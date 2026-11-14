@@ -13,11 +13,7 @@ const BUFFER_TOKEN = 'UzOAWwEy9YPqjz67tZ6sqeyt2hqv0UNz00R1EDkfjib';
 const BUFFER_API_URL = 'https://api.buffer.com';
 
 export const CHANNELS = [
-  {
-    channelName: 'YouTube Shorts',
-    channelId: '6af071d462b70b94b0bde992',
-    service: 'youtube'
-  },
+  // YouTube disabled temporarily per user request (focusing on TikTok & Facebook)
   {
     channelName: 'TikTok',
     channelId: '6af072a762b70b94b0be017e',

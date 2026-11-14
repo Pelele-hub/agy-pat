@@ -188,9 +188,22 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T12:51:33.680Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-15T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "postId": "6af8c4a1918fe79d2ea1c15b",
+          "dueAt": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "channel": "Facebook Reels",
+          "postId": "6af8c4a2918fe79d2ea1c195",
+          "dueAt": "2026-11-15T18:00:00.000Z"
+        }
+      ]
     },
     {
       "id": "queue_1794228915663_3cgih8",
@@ -227,9 +240,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T12:55:15.663Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-16T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4bfe86a5789a6cdf07d",
+          "dueAt": "2026-11-16T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4bfe86a5789a6cdf0ad",
+          "dueAt": "2026-11-16T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     },
     {
       "id": "queue_1794231468785_we5fqh",
@@ -266,9 +296,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T13:37:48.785Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-17T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4c0918fe79d2ea1c7ab",
+          "dueAt": "2026-11-17T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4c1e5a113497aa7f571",
+          "dueAt": "2026-11-17T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     },
     {
       "id": "queue_1794231784269_8utgk3",
@@ -311,9 +358,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T13:43:04.269Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-18T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4c2918fe79d2ea1c7e2",
+          "dueAt": "2026-11-18T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4c3c5b364e06215627a",
+          "dueAt": "2026-11-18T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     },
     {
       "id": "queue_1794232068551_o43cqz",
@@ -350,9 +414,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T13:47:48.551Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-19T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4c4918fe79d2ea1c836",
+          "dueAt": "2026-11-19T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4c5e86a5789a6cdf165",
+          "dueAt": "2026-11-19T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     },
     {
       "id": "queue_1794232351215_vntbnz",
@@ -383,9 +464,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T13:52:31.215Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-20T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4c6918fe79d2ea1c88d",
+          "dueAt": "2026-11-20T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4c6e5a113497aa7f946",
+          "dueAt": "2026-11-20T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     },
     {
       "id": "queue_1794232674587_g11mev",
@@ -422,9 +520,26 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "scheduled",
       "createdAt": "2026-11-09T13:57:54.587Z",
-      "publishedAt": null
+      "publishedAt": null,
+      "dueAt": "2026-11-21T18:00:00.000Z",
+      "scheduledPosts": [
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8c4c7918fe79d2ea1c944",
+          "dueAt": "2026-11-21T18:00:00.000Z",
+          "status": "scheduled"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8c4c8e5a113497aa7f9c3",
+          "dueAt": "2026-11-21T18:00:00.000Z",
+          "status": "scheduled"
+        }
+      ]
     }
   ],
   "updatedAt": "2026-11-14T19:52:52.336Z"
