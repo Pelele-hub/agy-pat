@@ -1,0 +1,261 @@
+{
+  "id": "QuranStudioWf1",
+  "name": "Quran Studio - Workflow 1 (Curated HD B-Roll)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger",
+      "name": "When clicking ‘Execute Workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-quran-reel",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger",
+      "name": "Webhook Trigger (On Demand / API)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        440
+      ],
+      "webhookId": "quran-studio-webhook-1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger",
+      "name": "Daily Quran Reminder (Schedule)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\nconst body = input.body || input;\n\nreturn {\n  json: {\n    surah: body.surah || 67,\n    startAyah: body.startAyah || 1,\n    count: body.count || 5,\n    reciterId: body.reciterId || 7,\n    theme: body.theme || 'nocturnal_relaxing',\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-configure-params",
+      "name": "Configure Quran Parameters",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5056/generate-quran-reel",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"surah\": {{ $json.surah }},\n  \"startAyah\": {{ $json.startAyah }},\n  \"count\": {{ $json.count }},\n  \"reciterId\": {{ $json.reciterId }}\n}",
+        "options": {
+          "timeout": 360000
+        }
+      },
+      "id": "node-render-engine",
+      "name": "Render Quran Reel (Workflow 1 Engine)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.docker_stream_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "video_file"
+            }
+          },
+          "timeout": 120000
+        }
+      },
+      "id": "node-download-binary",
+      "name": "Download Reel Binary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const reel = $input.item.json;\nconst verses = reel.verses || [];\n\nconst arabicFullText = verses.map(v => v.text).join(' ۝ ');\nconst verseKeys = verses.map(v => v.key).join(', ');\n\nconst title = `Surah ${reel.surah} (Ayahs ${verseKeys})`;\nconst caption = `Surah ${reel.surah} (Ayahs ${verseKeys})\\n\\n\"${arabicFullText}\"\\n\\nReciter: Mishari Rashid Alafasy\\n\\nRelax your heart and find peace in the words of the Almighty. 🕊️✨\\n\\n#quran #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok`;\n\n// Determine video URL (prefer public tunnel for Buffer, fallback to local stream)\nconst videoUrl = reel.public_stream_url || reel.stream_url || `http://localhost:5056/stream/reel_${reel.job_id}.mp4`;\n\nconst channels = [\n  {\n    channelName: \"YouTube Shorts\",\n    channelId: \"6af071d462b70b94b0bde992\",\n    input: {\n      channelId: \"6af071d462b70b94b0bde992\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        youtube: {\n          title: title.slice(0, 95),\n          privacy: \"public\",\n          madeForKids: false,\n          categoryId: \"22\"\n        }\n      }\n    }\n  },\n  {\n    channelName: \"TikTok\",\n    channelId: \"6af072a762b70b94b0be017e\",\n    input: {\n      channelId: \"6af072a762b70b94b0be017e\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        tiktok: {\n          title: title.slice(0, 90),\n          isAiGenerated: false\n        }\n      }\n    }\n  },\n  {\n    channelName: \"Facebook Reels\",\n    channelId: \"6af0714462b70b94b0bde62b\",\n    input: {\n      channelId: \"6af0714462b70b94b0bde62b\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        facebook: {\n          type: \"reel\"\n        }\n      }\n    }\n  }\n];\n\nreturn channels.map(c => ({\n  json: {\n    channelName: c.channelName,\n    channelId: c.channelId,\n    job_id: reel.job_id,\n    surah: reel.surah,\n    verses: verseKeys,\n    public_stream_url: videoUrl,\n    input: c.input\n  }\n}));"
+      },
+      "id": "node-format-social",
+      "name": "Format Social & Reel Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "node-respond-webhook",
+      "name": "Respond to Webhook / Caller",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.buffer.com",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer UzOAWwEy9YPqjz67tZ6sqeyt2hqv0UNz00R1EDkfjib"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"mutation CreatePost($input: CreatePostInput!) { createPost(input: $input) { ... on PostActionSuccess { post { id status dueAt } } ... on InvalidInputError { message } ... on LimitReachedError { message } ... on UnexpectedError { message } } }\",\n  \"variables\": {\n    \"input\": {{ JSON.stringify($json.input) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "node-buffer-queue-post",
+      "name": "Queue in Buffer (GraphQL)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        440
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute Workflow’": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger (On Demand / API)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Quran Reminder (Schedule)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Quran Parameters": {
+      "main": [
+        [
+          {
+            "node": "Render Quran Reel (Workflow 1 Engine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Render Quran Reel (Workflow 1 Engine)": {
+      "main": [
+        [
+          {
+            "node": "Download Reel Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Reel Binary": {
+      "main": [
+        [
+          {
+            "node": "Format Social & Reel Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Social & Reel Payload": {
+      "main": [
+        [
+          {
+            "node": "Queue in Buffer (GraphQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue in Buffer (GraphQL)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook / Caller",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,4 @@
+file 'C:/Users/majji/quran_video_studio/assets/audio/094005_alafasy.mp3'
+file 'C:/Users/majji/quran_video_studio/assets/audio/094006_alafasy.mp3'
+file 'C:/Users/majji/quran_video_studio/assets/audio/094007_alafasy.mp3'
+file 'C:/Users/majji/quran_video_studio/assets/audio/094008_alafasy.mp3'

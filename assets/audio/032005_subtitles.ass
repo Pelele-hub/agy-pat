@@ -1,0 +1,17 @@
+[Script Info]
+Title: Blue Night Quran Style
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: None
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: QuranCalligraphy,Amiri,56,&H00FFFFFF,&H000000FF,&H80000000,&HA0000000,1,0,0,0,100,100,1.0,0,1,1.5,2.8,2,80,80,940,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.40,0:00:11.20,QuranCalligraphy,,0,0,0,,{\fad(350,350)}يُدَبِّرُ ٱلْأَمْرَ مِنَ ٱلسَّمَآءِ إِلَى ٱلْأَرْضِ ثُمَّ يَعْرُجُ إِلَيْهِ
+Dialogue: 0,0:00:11.70,0:00:20.27,QuranCalligraphy,,0,0,0,,{\fad(350,350)}فِى يَوْمٍ كَانَ مِقْدَارُهُۥٓ أَلْفَ سَنَةٍ مِّمَّا تَعُدُّونَ

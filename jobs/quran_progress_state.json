@@ -1,0 +1,125 @@
+{
+  "currentSurah": 2,
+  "nextAyah": 60,
+  "lastRunAt": "2026-11-09T13:52:31.219Z",
+  "lastBatch": {
+    "surahRange": "2:56 -> 2:59",
+    "verseCount": 4,
+    "duration": 77.63000000000001,
+    "completedAt": "2026-11-09T13:52:31.219Z"
+  },
+  "history": [
+    {
+      "start": "1:1",
+      "end": "2:2",
+      "verses": 9,
+      "duration": "63.14",
+      "timestamp": "2026-10-30T18:35:40.498Z"
+    },
+    {
+      "start": "2:3",
+      "end": "2:7",
+      "verses": 5,
+      "duration": "64.55",
+      "timestamp": "2026-10-30T21:43:56.954Z"
+    },
+    {
+      "start": "2:8",
+      "end": "2:13",
+      "verses": 6,
+      "duration": "83.01",
+      "timestamp": "2026-10-30T22:36:36.126Z"
+    },
+    {
+      "start": "2:14",
+      "end": "2:17",
+      "verses": 4,
+      "duration": "66.04",
+      "timestamp": "2026-10-30T22:56:25.720Z"
+    },
+    {
+      "start": "2:18",
+      "end": "2:20",
+      "verses": 3,
+      "duration": "63.74",
+      "timestamp": "2026-10-31T10:44:35.591Z"
+    },
+    {
+      "start": "2:21",
+      "end": "2:23",
+      "verses": 3,
+      "duration": "68.39",
+      "timestamp": "2026-11-02T10:39:15.910Z"
+    },
+    {
+      "start": "2:24",
+      "end": "2:26",
+      "verses": 3,
+      "duration": "96.37",
+      "timestamp": "2026-11-09T12:30:11.281Z"
+    },
+    {
+      "start": "2:27",
+      "end": "2:29",
+      "verses": 3,
+      "duration": "63.17",
+      "timestamp": "2026-11-09T12:37:00.905Z"
+    },
+    {
+      "start": "2:30",
+      "end": "2:32",
+      "verses": 3,
+      "duration": "71.92",
+      "timestamp": "2026-11-09T12:41:51.998Z"
+    },
+    {
+      "start": "2:33",
+      "end": "2:35",
+      "verses": 3,
+      "duration": "72.46",
+      "timestamp": "2026-11-09T12:46:55.469Z"
+    },
+    {
+      "start": "2:36",
+      "end": "2:39",
+      "verses": 4,
+      "duration": "72.62",
+      "timestamp": "2026-11-09T12:51:39.504Z"
+    },
+    {
+      "start": "2:40",
+      "end": "2:43",
+      "verses": 4,
+      "duration": "61.58",
+      "timestamp": "2026-11-09T13:33:24.886Z"
+    },
+    {
+      "start": "2:44",
+      "end": "2:48",
+      "verses": 5,
+      "duration": "81.64",
+      "timestamp": "2026-11-09T13:37:48.788Z"
+    },
+    {
+      "start": "2:49",
+      "end": "2:52",
+      "verses": 4,
+      "duration": "67.27",
+      "timestamp": "2026-11-09T13:43:04.272Z"
+    },
+    {
+      "start": "2:53",
+      "end": "2:55",
+      "verses": 3,
+      "duration": "63.25",
+      "timestamp": "2026-11-09T13:47:48.554Z"
+    },
+    {
+      "start": "2:56",
+      "end": "2:59",
+      "verses": 4,
+      "duration": "77.63",
+      "timestamp": "2026-11-09T13:52:31.219Z"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "id": "QuranStudioDispatcher",
+  "name": "Quran Studio - Automatic Buffer Queue Dispatcher",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger-dispatch",
+      "name": "When clicking ‘Execute Workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger-dispatch",
+      "name": "Auto Check Buffer Every 15 Min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "check-dispatch-queue",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger-dispatch",
+      "name": "Webhook Trigger (On Demand)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        640
+      ],
+      "webhookId": "quran-studio-dispatch-webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5056/api/queue/dispatch",
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "id": "node-call-dispatch-api",
+      "name": "Check Buffer Slots & Dispatch Next Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        500,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.dispatched }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "node-if-dispatched",
+      "name": "Was Video Dispatched?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        780,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const res = $input.item.json;\nconsole.log(`[Quran Dispatcher] SUCCESS: Video ${res.jobId || ''} dispatched to Buffer! Message: ${res.message}`);\nreturn {\n  json: {\n    status: 'DISPATCHED_TO_BUFFER',\n    timestamp: new Date().toISOString(),\n    details: res\n  }\n};"
+      },
+      "id": "node-log-success",
+      "name": "Log Successful Dispatch",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const res = $input.item.json;\nconsole.log(`[Quran Dispatcher] IDLE: ${res.message}`);\nreturn {\n  json: {\n    status: 'IDLE',\n    reason: res.message,\n    pendingCount: res.pendingCount || 0,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-log-idle",
+      "name": "Log Idle / Waiting",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        540
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute Workflow’": {
+      "main": [
+        [
+          {
+            "node": "Check Buffer Slots & Dispatch Next Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Check Buffer Every 15 Min": {
+      "main": [
+        [
+          {
+            "node": "Check Buffer Slots & Dispatch Next Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger (On Demand)": {
+      "main": [
+        [
+          {
+            "node": "Check Buffer Slots & Dispatch Next Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Buffer Slots & Dispatch Next Video": {
+      "main": [
+        [
+          {
+            "node": "Was Video Dispatched?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Was Video Dispatched?": {
+      "main": [
+        [
+          {
+            "node": "Log Successful Dispatch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Idle / Waiting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": true
+}

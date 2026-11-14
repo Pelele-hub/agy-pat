@@ -1,0 +1,36 @@
+name: Daily 6:00 PM Quran Reel Publisher
+
+on:
+  schedule:
+    # 18:00 UTC = 6:00 PM Morocco / UK / UTC
+    - cron: '0 18 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab anytime
+
+permissions:
+  contents: write # Needed to commit updated queue status
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run Daily Cloud Publisher
+        env:
+          BUFFER_TOKEN: ${{ secrets.BUFFER_TOKEN }}
+        run: |
+          node scripts/cloud_publish_runner.mjs
+
+      - name: Commit & Push Updated Queue
+        run: |
+          git config --global user.name "Quran Studio Bot"
+          git config --global user.email "bot@quranstudio.local"
+          git add jobs/cloud_publish_queue.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-published daily reel [skip ci]" && git push)

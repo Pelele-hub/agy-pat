@@ -1,0 +1,19 @@
+{
+  "name": "quran-video-vault",
+  "version": "1.0.0",
+  "description": "Autonomous Quran Reel Video Stock & 24/7 Social Publisher",
+  "type": "module",
+  "scripts": {
+    "sync-stock": "node scripts/cloud_stock_uploader.mjs",
+    "publish-daily": "node scripts/cloud_publish_runner.mjs"
+  },
+  "keywords": [
+    "quran",
+    "video",
+    "automation",
+    "buffer",
+    "publisher"
+  ],
+  "author": "",
+  "license": "MIT"
+}

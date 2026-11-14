@@ -1,0 +1,50 @@
+{
+  "name": "Quran Studio - Workflow 1 (Curated B-Roll)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-quran-reel-broll",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "webhook-trigger-1"
+    },
+    {
+      "parameters": {
+        "command": "=node C:/Users/majji/quran_video_studio/scripts/produce_workflow_1.mjs"
+      },
+      "name": "Render Reel (Workflow 1)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        480,
+        300
+      ],
+      "id": "execute-command-1"
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Render Reel (Workflow 1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}

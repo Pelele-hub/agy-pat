@@ -1,0 +1,14 @@
+node_modules/
+bin/
+output/
+assets/visuals/
+assets/audio/chapters/
+*.wav
+*.mp4
+*.mp3
+*.exe
+jobs/wf*
+jobs/mulk*
+config/
+*.log
+.env

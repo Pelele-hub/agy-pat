@@ -1,0 +1,261 @@
+{
+  "id": "QuranStudioWf3",
+  "name": "Quran Studio - Workflow 3 (Google Veo / Flow)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger-wf3",
+      "name": "When clicking ‘Execute Workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-quran-reel-veo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger-wf3",
+      "name": "Webhook Trigger (Google Veo)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        440
+      ],
+      "webhookId": "quran-studio-webhook-wf3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger-wf3",
+      "name": "Daily Quran Reminder (Schedule)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\nconst body = input.body || input;\n\nreturn {\n  json: {\n    engine: 'veo',\n    surah: body.surah || null,\n    startAyah: body.startAyah || null,\n    count: body.count || 4,\n    minDuration: body.minDuration || 60,\n    reciterId: body.reciterId || 7,\n    theme: body.theme || 'google_veo_cinematic',\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-configure-params-wf3",
+      "name": "Configure Quran Parameters (Google Veo)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5056/generate-quran-reel-veo",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"engine\": \"veo\",\n  \"surah\": {{ $json.surah !== null ? $json.surah : 'null' }},\n  \"startAyah\": {{ $json.startAyah !== null ? $json.startAyah : 'null' }},\n  \"count\": {{ $json.count || 4 }},\n  \"minDuration\": {{ $json.minDuration || 60 }},\n  \"reciterId\": {{ $json.reciterId || 7 }}\n}",
+        "options": {
+          "timeout": 360000
+        }
+      },
+      "id": "node-render-engine-wf3",
+      "name": "Render Reel (Google Veo Engine)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.docker_stream_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "video_file"
+            }
+          },
+          "timeout": 120000
+        }
+      },
+      "id": "node-download-binary-wf3",
+      "name": "Fetch Rendered Video Binary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const reel = $input.item.json;\nconst verses = reel.verses || [];\n\nconst arabicFullText = verses.map(v => v.text).join(' ۝ ');\nconst verseKeys = verses.map(v => v.key).join(', ');\n\nconst title = `Surah ${reel.surah} (Ayahs ${verseKeys})`;\nconst caption = `Surah ${reel.surah} (Ayahs ${verseKeys})\\n\\n\"${arabicFullText}\"\\n\\nReciter: Mishari Rashid Alafasy\\n\\nRelax your heart and find peace in the words of the Almighty. 🕊️✨\\n\\n#quran #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok`;\n\n// Determine video URL (prefer public tunnel for Buffer, fallback to local stream)\nconst videoUrl = reel.public_stream_url || reel.stream_url || `http://localhost:5056/stream/reel_${reel.job_id}.mp4`;\n\nconst channels = [\n  {\n    channelName: \"YouTube Shorts\",\n    channelId: \"6af071d462b70b94b0bde992\",\n    input: {\n      channelId: \"6af071d462b70b94b0bde992\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        youtube: {\n          title: title.slice(0, 95),\n          privacy: \"public\",\n          madeForKids: false,\n          categoryId: \"22\"\n        }\n      }\n    }\n  },\n  {\n    channelName: \"TikTok\",\n    channelId: \"6af072a762b70b94b0be017e\",\n    input: {\n      channelId: \"6af072a762b70b94b0be017e\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        tiktok: {\n          title: title.slice(0, 90),\n          isAiGenerated: false\n        }\n      }\n    }\n  },\n  {\n    channelName: \"Facebook Reels\",\n    channelId: \"6af0714462b70b94b0bde62b\",\n    input: {\n      channelId: \"6af0714462b70b94b0bde62b\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        facebook: {\n          type: \"reel\"\n        }\n      }\n    }\n  }\n];\n\nreturn channels.map(c => ({\n  json: {\n    channelName: c.channelName,\n    channelId: c.channelId,\n    job_id: reel.job_id,\n    surah: reel.surah,\n    verses: verseKeys,\n    public_stream_url: videoUrl,\n    input: c.input\n  }\n}));"
+      },
+      "id": "node-format-social-wf3",
+      "name": "Format Social & Reel Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "node-respond-webhook-wf3",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.buffer.com",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer UzOAWwEy9YPqjz67tZ6sqeyt2hqv0UNz00R1EDkfjib"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"mutation CreatePost($input: CreatePostInput!) { createPost(input: $input) { ... on PostActionSuccess { post { id status dueAt } } ... on InvalidInputError { message } ... on LimitReachedError { message } ... on UnexpectedError { message } } }\",\n  \"variables\": {\n    \"input\": {{ JSON.stringify($json.input) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "node-buffer-queue-post",
+      "name": "Queue in Buffer (GraphQL)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        440
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute Workflow’": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Google Veo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger (Google Veo)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Google Veo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Quran Reminder (Schedule)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Google Veo)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Quran Parameters (Google Veo)": {
+      "main": [
+        [
+          {
+            "node": "Render Reel (Google Veo Engine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Render Reel (Google Veo Engine)": {
+      "main": [
+        [
+          {
+            "node": "Fetch Rendered Video Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Rendered Video Binary": {
+      "main": [
+        [
+          {
+            "node": "Format Social & Reel Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Social & Reel Payload": {
+      "main": [
+        [
+          {
+            "node": "Queue in Buffer (GraphQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue in Buffer (GraphQL)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "id": "QuranStudioWf2",
+  "name": "Quran Studio - Workflow 2 (Meta AI Vibes.ai)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger-wf2",
+      "name": "When clicking ‘Execute Workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-quran-reel-vibes",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger-wf2",
+      "name": "Webhook Trigger (Meta AI)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        440
+      ],
+      "webhookId": "quran-studio-webhook-wf2"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger-wf2",
+      "name": "Daily Quran Reminder (Schedule)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\nconst body = input.body || input;\n\nconst PROMPT_POOLS = {\n  \"masjid_quran\": [\n    \"Cinematic vertical 9:16 shot of the Holy Quran resting open on an ornate carved wooden rehal inside a magnificent peaceful mosque, gentle morning god rays illuminating the sacred gold-leaf calligraphy, ornate Turkish carpets, grand arches in background, spiritual tranquility, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 macro close-up of an open Holy Quran placed gracefully on a velvet stand inside a tranquil prayer hall, warm glowing light from an antique brass mosque lantern, soft dust motes dancing in the beam, deep peace, 4k ultra realistic, zero text\",\n    \"Cinematic vertical 9:16 low angle shot of the Holy Quran on an ancient dark wood bookstand near a grand marble pillar of an Ottoman mosque, delicate evening sunset light filtering through tall arched windows, peaceful reverence, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow camera push toward the Holy Quran resting on a carved marble ledge inside a quiet Andalusian mosque courtyard, gentle fountain water rippling in the background, serene spiritual ambience, 4k, zero text\",\n    \"Cinematic vertical 9:16 high-angle perspective looking down at an open Holy Quran with emerald and gold illuminated borders on a wooden rihal, surrounded by warm hanging mosque chandeliers, majestic silence, 4k, zero text\",\n    \"Cinematic vertical 9:16 intimate side profile of a closed leather-bound Holy Quran with intricate geometric embossing resting peacefully beside a prayer bead misbaha on a soft mosque carpet at dawn, 4k ultra realistic, zero text\",\n    \"Cinematic vertical 9:16 slow cinematic pan across an open Quran bathed in ethereal twilight glow inside a grand dome mosque, tranquil shadows and soft warm illumination, spiritual awe, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow overhead tracking shot of an open Holy Quran with illuminated gold and lapis lazuli borders resting on an ebony wooden rehal, gentle candlelight flickering softly on polished marble tiles, profound spiritual peace, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 low-angle perspective of an open Holy Quran bathed in warm amber sunbeam streaming through an ornate stained-glass arabesque window in a grand mosque, floating dust motes glistening like gold dust, serene contemplation, 4k ultra realistic, zero text\"\n  ],\n  \"masjid_worship\": [\n    \"Cinematic vertical 9:16 respectful rear shot of a believer in a clean white prayer robe sitting cross-legged on a vast Persian carpet in an empty grand mosque, peacefully reading the Holy Quran under a soft glowing chandelier, spiritual stillness, 4k, zero text\",\n    \"Cinematic vertical 9:16 silhouetted worshipper sitting in quiet contemplation inside a majestic mosque prayer hall, warm amber sunset sunlight streaming through soaring arched stained-glass windows, meditative tranquility, 4k, zero text\",\n    \"Cinematic vertical 9:16 peaceful worshipper sitting beside a grand marble column reciting Quran softly in an illuminated mosque at night, gentle ambient light from hanging lamps, profound serenity, 4k, zero text\",\n    \"Cinematic vertical 9:16 devout figure with hands raised in peaceful supplication dua inside a tranquil quiet mosque sanctuary at dawn, soft morning blue light meeting warm lantern glow, deep inner peace, 4k, zero text\",\n    \"Cinematic vertical 9:16 side view of an elderly scholar in traditional robe quietly turning a page of scripture inside an ancient sunlit mosque library with arched book alcoves, serene timeless atmosphere, 4k, zero text\",\n    \"Cinematic vertical 9:16 peaceful worshipper walking slowly through an empty colonnaded mosque courtyard with polished white marble reflecting the twilight sky and glowing minaret lamps, 4k, zero text\",\n    \"Cinematic vertical 9:16 respectful wide shot of a solitary worshipper in prostration sujud on a soft mosque carpet under a soaring decorated dome, deep devotion and absolute peace, 4k, zero text\",\n    \"Cinematic vertical 9:16 peaceful side view of a devout worshipper in white attire gently turning prayer beads misbaha in serene silence beneath majestic arches of an illuminated historic mosque at blue hour, deep inner stillness, 4k, zero text\",\n    \"Cinematic vertical 9:16 serene wide shot looking through a row of carved stone archways inside an empty grand mosque at sunrise, a solitary worshipper sitting in quiet reflection bathed in soft golden morning radiance, 4k hyper-realistic, zero text\"\n  ],\n  \"nature_trees_rivers\": [\n    \"Cinematic vertical 9:16 lush misty emerald pine forest shrouded in gentle mountain fog, soft golden sun rays piercing through towering trees, spiritual tranquil nature, slow camera, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 crystal clear winding river meandering smoothly through an enchanted green valley surrounded by ancient weeping willows and blooming wild lilies at golden hour, serene flow, 4k, zero text\",\n    \"Cinematic vertical 9:16 majestic centuries-old olive grove on a quiet hillside, golden afternoon sunlight filtering through silver-green leaves, gentle breeze, peaceful countryside, 4k, zero text\",\n    \"Cinematic vertical 9:16 autumn river valley with vibrant golden and crimson maple trees, mirror-still stream reflecting the vibrant foliage under a soft overcast sky, serene atmospheric motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 towering bamboo forest with gentle wind rustling stalks and morning mist drifting between emerald stems, peaceful zen nature, slow graceful motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 aerial drone shot following a tranquil mountain river with smooth crystal water flowing gently over polished river stones through a dense cedar forest at sunrise, 4k, zero text\",\n    \"Cinematic vertical 9:16 peaceful meadow with a solitary grand oak tree bathed in ethereal morning mist, soft dew drops shining on grass, spiritual natural beauty, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow camera glide through an ancient blooming almond orchard at dawn, soft white and pink petals gently drifting onto a quiet crystal stream, warm morning glow, peaceful paradise, 4k, zero text\",\n    \"Cinematic vertical 9:16 tranquil misty valley at sunrise with majestic weeping willows bordering a mirror-calm river, golden morning rays piercing through translucent vapor, meditative natural serenity, 4k ultra realistic, zero text\"\n  ],\n  \"waterfalls_waters\": [\n    \"Cinematic vertical 9:16 grand cascading tiered waterfall tumbling gently down mossy granite rocks into a crystal turquoise pool, gentle water spray in golden sunlight, peaceful, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 secluded tropical grotto with a silky smooth waterfall cascading into a luminous turquoise lagoon surrounded by lush ferns and exotic orchids, tranquil paradise, 4k, zero text\",\n    \"Cinematic vertical 9:16 gentle wide veil waterfall cascading softly over layered limestone shelves into a clear emerald river, morning mist rising slowly in warm dawn light, serene motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 pure mountain spring water bubbling up crystal clear through smooth river pebbles, surrounded by wild mint and mossy stones, peaceful soothing flow, slow motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 dramatic high mountain waterfall framed by towering alpine cliffs and snow-capped peaks at sunset, glowing golden mist, majestic natural grandeur, 4k, zero text\",\n    \"Cinematic vertical 9:16 tranquil rainforest stream with cascading miniature water steps flowing gently over slate rock terraces into a calm still pool, soothing ambience, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow motion close-up of a pure natural spring cascade tumbling gently over velvety emerald mossy rocks into a crystalline turquoise pool, delicate sunlit water droplets, calming peaceful ambience, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 breathtaking twin waterfalls pouring gracefully into a serene alpine lagoon surrounded by wild mountain flowers at golden hour, soft rainbow mist glowing in sunset light, 4k, zero text\"\n  ],\n  \"beaches_coastal\": [\n    \"Cinematic vertical 9:16 pristine secluded white sand beach at sunset, slow gentle turquoise waves rolling softly onto the shore under a pastel pink and apricot twilight sky, soothing ocean stillness, 4k, zero text\",\n    \"Cinematic vertical 9:16 dramatic coastal headland with turquoise ocean swell washing gently against dark basalt sea cliffs and natural stone arches at golden hour, awe-inspiring tranquility, 4k, zero text\",\n    \"Cinematic vertical 9:16 peaceful tropical shoreline with graceful palm trees swaying gently over crystal-clear shallow turquoise waters under a warm glowing dusk horizon, 4k ultra realistic, zero text\",\n    \"Cinematic vertical 9:16 vast calm ocean at dawn with the golden sun rising quietly above the water, gentle shimmering ripples reflecting endless gold light, meditative stillness, 4k, zero text\",\n    \"Cinematic vertical 9:16 sweeping coastal sand dunes meeting a calm azure sea at twilight, soft ocean breeze carving smooth wind ripples in the sand, peaceful solitude, 4k, zero text\",\n    \"Cinematic vertical 9:16 tranquil twilight tide pool nestled among smooth coastal rocks, reflecting a glowing purple and orange sunset sky, gentle ocean foam receding softly, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow cinematic low-angle glide along wet golden beach sand reflecting a glowing apricot and violet sunset, gentle crystalline waves rolling silently onto shore, profound ocean peace, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 serene coastal cove framed by ancient pine trees and sea cliffs, calm emerald-turquoise waters gently lapping against smooth white pebbles at dawn, meditative stillness, 4k, zero text\"\n  ],\n  \"cozy_illuminated_houses\": [\n    \"Cinematic vertical 9:16 picturesque stone cottage nestled in a misty enchanted pine forest at twilight, warm amber lights glowing invitingly through wooden window panes, soft chimney smoke rising into starry night sky, cozy peaceful sanctuary, 4k, zero text\",\n    \"Cinematic vertical 9:16 traditional Andalusian courtyard villa at night with warm hanging brass lanterns illuminating carved stone arches and reflecting on a calm central water pool, quiet serenity, 4k, zero text\",\n    \"Cinematic vertical 9:16 cozy mountain wooden chalet perched on a peaceful hill surrounded by snow-dusted fir trees at dusk, glowing warm golden windows cutting through cool blue twilight mist, 4k, zero text\",\n    \"Cinematic vertical 9:16 beautiful lakeside house with warm glowing porch lanterns and fairy lights reflecting across dark mirror-smooth water under a starry night and crescent moon, deeply peaceful, 4k, zero text\",\n    \"Cinematic vertical 9:16 charming Mediterranean stone villa with warm lantern-lit courtyard garden, blooming bougainvillea, and soft glowing arched windows under a deep indigo sky, 4k, zero text\",\n    \"Cinematic vertical 9:16 secluded rustic cabin surrounded by tall autumn trees at twilight, warm fireside glow visible through large bay windows, fallen leaves on stone pathway, tranquil haven, 4k, zero text\",\n    \"Cinematic vertical 9:16 charming waterside cottage on a quiet riverbank at dusk, warm golden interior lamps glowing softly through wooden mullioned windows, calm water reflecting amber light ripples under a twilight sky, cozy sanctuary, 4k, zero text\",\n    \"Cinematic vertical 9:16 picturesque timber cabin nestled deep in a quiet snow-dusted valley at twilight, warm fireplace smoke gently curling from chimney into a starlit sapphire sky, lantern on wooden porch glowing warmly, peaceful haven, 4k hyper-realistic, zero text\"\n  ],\n  \"cinematic_cityscapes\": [\n    \"Cinematic vertical 9:16 slow aerial drone glide over a breathtaking modern coastal city skyline at twilight, shimmering blue and gold skyscraper lights reflecting on calm bay waters, smooth elegant motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 elevated slow pan overlooking a majestic metropolitan skyline transitioning from golden sunset to dusk, glittering warm lights illuminating iconic towers, tranquil city grandeur, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow upward cinematic tilt along sleek illuminated glass towers into a deep violet evening sky, warm ambient city glow and soft light trails below, peaceful metropolis, 4k, zero text\",\n    \"Cinematic vertical 9:16 panoramic view of a historic and modern cityscape illuminated at blue hour along a tranquil waterfront, bridge lights glowing like golden pearls over calm water, 4k, zero text\",\n    \"Cinematic vertical 9:16 aerial drone tracking shot flying smoothly above illuminated skyscraper rooftops and rooftop gardens at night, distant horizon glowing warmly, serene cinematic perspective, 4k, zero text\",\n    \"Cinematic vertical 9:16 distant high vantage of a sprawling luminous city under a starlit night sky with a peaceful crescent moon shining above the towers, calm urban majesty, 4k, zero text\",\n    \"Cinematic vertical 9:16 slow graceful drone rise over a serene coastal metropolis at dusk, soft golden lantern light lining waterfront boulevards and reflecting off glass architectural towers, tranquil urban harmony, 4k, zero text\",\n    \"Cinematic vertical 9:16 panoramic view of historic domed architecture seamlessly blending into modern illuminated skyline at twilight, warm glowing streetlamps and tranquil river reflections under a velvet blue sky, 4k ultra realistic, zero text\"\n  ],\n  \"celestial_skies\": [\n    \"Cinematic vertical 9:16 vibrant emerald green and violet aurora borealis dancing across starry Arctic night sky over calm dark water, sublime cosmic awe, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 celestial milky way galaxy with thousands of shining stars moving slowly across a deep midnight sky above silhouetted peaceful mountains, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 ethereal twilight sky with a delicate glowing crescent moon resting peacefully between soft drifting purple illuminated clouds, peaceful meditative night, 4k, zero text\",\n    \"Cinematic vertical 9:16 glowing bioluminescent ocean waves breaking softly onto a dark sandy beach under a canopy of bright celestial stars, magical tranquil night, 4k, zero text\",\n    \"Cinematic vertical 9:16 dramatic golden twilight horizon with the brilliant evening star shining brightly over quiet calm ocean waters, slow camera glide, 4k, zero text\",\n    \"Cinematic vertical 9:16 time-lapse of celestial stars and soft glowing nebulas reflected in a mirror-still alpine lake surrounded by dark pine silhouettes, spiritual cosmic peace, 4k, zero text\",\n    \"Cinematic vertical 9:16 breathtaking time-lapse of a glowing crescent moon and brilliant evening star shining peacefully amidst slow-moving iridescent purple and golden sunset clouds, spiritual wonder, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 ethereal night sky filled with millions of sparkling stars and soft turquoise nebula dust softly reflected in a perfectly still mirror mountain lake, cosmic tranquility, 4k ultra realistic, zero text\"\n  ],\n  \"peaceful_elements\": [\n    \"Cinematic vertical 9:16 slow heavy raindrops falling gently onto a dark glass window with soft warm amber glowing light in background, tranquil meditative ambience, hyper-realistic, 4k, zero text\",\n    \"Cinematic vertical 9:16 single candle flame glowing softly in a completely dark ancient room, warm golden candlelight, peaceful meditative stillness, 4k ultra realistic, slow motion, zero text\",\n    \"Cinematic vertical 9:16 warm fireplace embers glowing and flickering gently in a peaceful rustic stone hearth, soft calming crackle and warmth, 4k, zero text\",\n    \"Cinematic vertical 9:16 macro water droplets on fresh green olive leaves shining in golden morning sunlight, slow serene camera motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 gentle ripples expanding softly across a mirror-still garden pond reflecting autumn trees and warm sky, meditative peaceful stillness, 4k, zero text\",\n    \"Cinematic vertical 9:16 delicate incense smoke drifting gracefully through soft warm dust beams inside an ancient tranquil sanctuary, slow motion, 4k, zero text\",\n    \"Cinematic vertical 9:16 extreme macro shot of morning dew droplets resting like crystal pearls on delicate rose petals in soft golden sunlight, gentle breeze, sublime meditative peace, 4k ultra realistic, zero text\",\n    \"Cinematic vertical 9:16 slow motion shot of gentle autumn leaves floating serenely on a crystal clear forest spring, warm amber light filtering through canopy, soft water ripples, tranquil stillness, 4k, zero text\"\n  ],\n  \"fantastic_views\": [\n    \"Cinematic vertical 9:16 ethereal sea of clouds seen from a high mountain summit at dawn, golden morning sun rising above rolling cloud waves, majestic fantastic vista, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 crystal clear mirror-like glacial lake reflecting majestic snow-capped peaks and vibrant twilight colors, sublime peaceful stillness, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 serene desert oasis at golden hour, towering date palms swaying beside mirror-still water under warm glowing skies, tranquil exotic view, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 vast endless mirror salt flats reflecting deep pink and purple dusk horizon into infinity, surreal sublime landscape, 4k, zero text\",\n    \"Cinematic vertical 9:16 majestic winding canyon river at sunrise with golden light illuminating red sandstone walls, peaceful grandeur, 4k, zero text\",\n    \"Cinematic vertical 9:16 deep Norwegian fjord with sheer emerald cliffs and cascading veil waterfalls under soft Nordic dawn light, 4k, zero text\",\n    \"Cinematic vertical 9:16 towering sand dunes in deep Sahara at twilight with sweeping wind ripples and soft violet shadow gradients, peaceful endless expanse, 4k, zero text\",\n    \"Cinematic vertical 9:16 spectacular panoramic shot of terraced emerald green mountain slopes shrouded in soft flowing morning mist at sunrise, golden sunbeam ribbons sweeping across the valley, majestic divine creation, 4k hyper-realistic, zero text\",\n    \"Cinematic vertical 9:16 breathtaking high-altitude vista of rolling purple lavender fields stretching toward distant snow-capped mountain peaks under a glorious pastel dawn sky, pure serenity, 4k, zero text\"\n  ]\n};\n\nfunction shuffle(array) {\n  const arr = [...array];\n  for (let i = arr.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [arr[i], arr[j]] = [arr[j], arr[i]];\n  }\n  return arr;\n}\n\n// 1. Shuffle all categories first\nconst shuffledCategories = shuffle(Object.keys(PROMPT_POOLS));\nconst sceneCount = body.sceneCount || 6;\nconst selectedPrompts = [];\nconst chosenCategories = [];\nconst seed = Date.now().toString(36);\nconst categoryPools = {};\n\nfor (let i = 0; i < sceneCount; i++) {\n  const cat = shuffledCategories[i % shuffledCategories.length];\n  chosenCategories.push(cat);\n\n  // 2. In the chosen category, shuffle the prompts\n  if (!categoryPools[cat] || categoryPools[cat].length === 0) {\n    categoryPools[cat] = shuffle(PROMPT_POOLS[cat]);\n  }\n\n  const picked = categoryPools[cat].shift();\n  selectedPrompts.push(`${picked}, scene seed ${seed}_${i + 1}`);\n}\n\nreturn {\n  json: {\n    engine: 'vibes_ai',\n    surah: body.surah || null,\n    startAyah: body.startAyah || null,\n    minDuration: body.minDuration || 60,\n    reciterId: body.reciterId || 7,\n    prompts: selectedPrompts,\n    chosenCategories: chosenCategories,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-configure-params-wf2",
+      "name": "Configure Quran Parameters (Meta AI)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5056/generate-quran-reel-vibes",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"engine\": \"vibes_ai\",\n  \"surah\": {{ $json.surah !== null ? $json.surah : 'null' }},\n  \"startAyah\": {{ $json.startAyah !== null ? $json.startAyah : 'null' }},\n  \"minDuration\": {{ $json.minDuration || 60 }},\n  \"reciterId\": {{ $json.reciterId || 7 }},\n  \"prompts\": {{ JSON.stringify($json.prompts) }},\n  \"chosenCategories\": {{ JSON.stringify($json.chosenCategories) }}\n}",
+        "options": {
+          "timeout": 360000
+        }
+      },
+      "id": "node-render-engine-wf2",
+      "name": "Render Reel (Meta AI Vibes.ai Engine)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.docker_stream_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "video_file"
+            }
+          },
+          "timeout": 120000
+        }
+      },
+      "id": "node-download-binary-wf2",
+      "name": "Download Meta AI Reel Binary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const reel = $input.item.json;\nconst verses = reel.verses || [];\n\nconst arabicFullText = verses.map(v => v.text).join(' ۝ ');\nconst verseKeys = verses.map(v => v.key).join(', ');\n\nconst title = `Surah ${reel.surah} (Ayahs ${verseKeys})`;\nconst caption = `Surah ${reel.surah} (Ayahs ${verseKeys})\\n\\n\"${arabicFullText}\"\\n\\nReciter: Mishari Rashid Alafasy\\n\\nRelax your heart and find peace in the words of the Almighty. 🕊️✨\\n\\n#quran #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok`;\n\n// Determine video URL (prefer public tunnel for Buffer, fallback to local stream)\nconst videoUrl = reel.public_stream_url || reel.stream_url || `http://localhost:5056/stream/reel_${reel.job_id}.mp4`;\n\nconst channels = [\n  {\n    channelName: \"YouTube Shorts\",\n    channelId: \"6af071d462b70b94b0bde992\",\n    input: {\n      channelId: \"6af071d462b70b94b0bde992\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        youtube: {\n          title: title.slice(0, 95),\n          privacy: \"public\",\n          madeForKids: false,\n          categoryId: \"22\"\n        }\n      }\n    }\n  },\n  {\n    channelName: \"TikTok\",\n    channelId: \"6af072a762b70b94b0be017e\",\n    input: {\n      channelId: \"6af072a762b70b94b0be017e\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        tiktok: {\n          title: title.slice(0, 90),\n          isAiGenerated: false\n        }\n      }\n    }\n  },\n  {\n    channelName: \"Facebook Reels\",\n    channelId: \"6af0714462b70b94b0bde62b\",\n    input: {\n      channelId: \"6af0714462b70b94b0bde62b\",\n      text: caption,\n      schedulingType: \"automatic\",\n      mode: \"addToQueue\",\n      needsApproval: false,\n      assets: [\n        {\n          video: {\n            url: videoUrl\n          }\n        }\n      ],\n      metadata: {\n        facebook: {\n          type: \"reel\"\n        }\n      }\n    }\n  }\n];\n\nreturn channels.map(c => ({\n  json: {\n    channelName: c.channelName,\n    channelId: c.channelId,\n    job_id: reel.job_id,\n    surah: reel.surah,\n    verses: verseKeys,\n    public_stream_url: videoUrl,\n    input: c.input\n  }\n}));"
+      },
+      "id": "node-format-social-wf2",
+      "name": "Format Social & Reel Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "node-respond-webhook-wf2",
+      "name": "Respond to Webhook / Caller",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.buffer.com",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer UzOAWwEy9YPqjz67tZ6sqeyt2hqv0UNz00R1EDkfjib"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"mutation CreatePost($input: CreatePostInput!) { createPost(input: $input) { ... on PostActionSuccess { post { id status dueAt } } ... on InvalidInputError { message } ... on LimitReachedError { message } ... on UnexpectedError { message } } }\",\n  \"variables\": {\n    \"input\": {{ JSON.stringify($json.input) }}\n  }\n}",
+        "options": {}
+      },
+      "id": "node-buffer-queue-post",
+      "name": "Queue in Buffer (GraphQL)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        440
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute Workflow’": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Meta AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger (Meta AI)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Meta AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Quran Reminder (Schedule)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran Parameters (Meta AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Quran Parameters (Meta AI)": {
+      "main": [
+        [
+          {
+            "node": "Render Reel (Meta AI Vibes.ai Engine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Render Reel (Meta AI Vibes.ai Engine)": {
+      "main": [
+        [
+          {
+            "node": "Download Meta AI Reel Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Meta AI Reel Binary": {
+      "main": [
+        [
+          {
+            "node": "Format Social & Reel Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Social & Reel Payload": {
+      "main": [
+        [
+          {
+            "node": "Queue in Buffer (GraphQL)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Queue in Buffer (GraphQL)": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook / Caller",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": true
+}
