@@ -135,9 +135,29 @@
         }
       ],
       "engine": "vibes_ai",
-      "status": "pending",
+      "status": "published",
       "createdAt": "2026-11-09T12:46:49.811Z",
-      "publishedAt": null
+      "publishedAt": "2026-11-14T19:52:52.336Z",
+      "dispatchedPosts": [
+        {
+          "channel": "YouTube Shorts",
+          "channelId": "6af071d462b70b94b0bde992",
+          "postId": "6af8bbfac5b364e062128c86",
+          "status": "sent"
+        },
+        {
+          "channel": "TikTok",
+          "channelId": "6af072a762b70b94b0be017e",
+          "postId": "6af8bbfec5b364e062128d2e",
+          "status": "sending"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6af8bc09918fe79d2e9f0201",
+          "status": "sending"
+        }
+      ]
     },
     {
       "id": "queue_1794228693680_n8mzxo",
@@ -407,5 +427,5 @@
       "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-14T19:39:23.054Z"
+  "updatedAt": "2026-11-14T19:52:52.336Z"
 }
