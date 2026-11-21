@@ -2,7 +2,6 @@
 import { produceQuranV2Video } from './produce_quran_v2_batch.mjs';
 
 const REMAINING_BATCHES = [
-  { seriesNumber: 5, surah: 2, startAyah: 16, endAyah: 18, category: 'majestic_mountains_skies' },
   { seriesNumber: 6, surah: 2, startAyah: 19, endAyah: 20, category: 'cascading_waterfalls_rivers' },
   { seriesNumber: 7, surah: 2, startAyah: 21, endAyah: 22, category: 'misty_forests_big_trees' },
   { seriesNumber: 8, surah: 2, startAyah: 23, endAyah: 24, category: 'grand_mosques' },

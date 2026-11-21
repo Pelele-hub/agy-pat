@@ -526,14 +526,15 @@ export async function produceQuranV2Video({
 
   // --- Step 8: Update Cloud Publish Queue ---
   console.log(`[Cloud Queue] Enqueuing ${path.basename(outputMp4)} into cloud publish queue...`);
-  let cloudQueue = { queue: [] };
+  let cloudQueue = { items: [] };
   if (fs.existsSync(QUEUE_FILE)) {
     try { cloudQueue = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf-8')); } catch {}
   }
+  if (!cloudQueue.items) cloudQueue.items = [];
   const reelTitle = `Surah Al-Baqarah (2:${startAyah}-${endAyah}) | Sheikh Al-Minshawi (المنشاوي)`;
   const reelCaption = `سورة البقرة الآيات (${startAyah} - ${endAyah})\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (${startAyah} - ${endAyah}) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2`;
 
-  cloudQueue.queue.push({
+  cloudQueue.items.push({
     id: `quran_v2_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
     jobId: path.basename(outputMp4, '.mp4'),
     title: reelTitle,
@@ -580,6 +581,7 @@ export async function produceQuranV2Video({
   // --- Step 10: Git Commit & Push ---
   console.log(`[Git Sync] Syncing updated queue & state to origin/main...`);
   try {
+    try { execSync(`git pull --rebase origin main`, { cwd: ROOT_DIR }); } catch {}
     execSync(`git add jobs/cloud_publish_queue.json jobs/quran_v2_progress_state.json`, { cwd: ROOT_DIR });
     execSync(`git commit -m "feat: produce and queue Quran V2 Minshawi Video #${seriesNumber} (Surah 2:${startAyah}-${endAyah}) [skip ci]"`, { cwd: ROOT_DIR });
     execSync(`git push origin main`, { cwd: ROOT_DIR });
