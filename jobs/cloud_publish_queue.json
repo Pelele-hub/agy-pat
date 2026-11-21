@@ -566,7 +566,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T16:32:15.892Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795280039542_09g2q8",
+      "jobId": "quran_v2_minshawi_1795279185954_output",
+      "title": "Surah Al-Baqarah (2:8 - 2:12)",
+      "caption": "Surah Al-Baqarah (2:8 - 2:12)\n\n\"وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ وَبِٱلْيَوْمِ ٱلْـَٔاخِرِ وَمَا هُم بِمُؤْمِنِينَ ۝ يُخَـٰدِعُونَ ٱللَّهَ وَٱلَّذِينَ ءَامَنُوا۟ وَمَا يَخْدَعُونَ إِلَّآ أَنفُسَهُمْ وَمَا يَشْعُرُونَ ۝ فِى قُلُوبِهِم مَّرَضٌۭ فَزَادَهُمُ ٱللَّهُ مَرَضًۭا ۖ وَلَهُمْ عَذَابٌ أَلِيمٌۢ بِمَا كَانُوا۟ يَكْذِبُونَ ۝ وَإِذَا قِيلَ لَهُمْ لَا تُفْسِدُوا۟ فِى ٱلْأَرْضِ قَالُوٓا۟ إِنَّمَا نَحْنُ مُصْلِحُونَ ۝ أَلَآ إِنَّهُمْ هُمُ ٱلْمُفْسِدُونَ وَلَـٰكِن لَّا يَشْعُرُونَ\"\n\nReciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي) 🕊️✨\n\nRelax your heart and find peace in the words of the Almighty.\n\n#quran #minshawi #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok",
+      "videoFilename": "quran_v2_minshawi_1795279185954_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795279185954_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T16:53:59.542Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T16:32:15.892Z"
+  "updatedAt": "2026-11-21T16:53:59.544Z"
 }
