@@ -263,10 +263,11 @@ export async function produceQuranV2Video({
   startWord = 1,
   endWord = null,
   category,
-  seriesNumber
+  seriesNumber,
+  jobId: customJobId = null
 }) {
   const timestamp = Date.now();
-  const jobId = `quran_v2_minshawi_${timestamp}`;
+  const jobId = customJobId || `quran_v2_minshawi_${timestamp}`;
   const jobDir = path.join(JOBS_DIR, jobId);
   fs.mkdirSync(jobDir, { recursive: true });
 
@@ -311,99 +312,65 @@ export async function produceQuranV2Video({
   // --- Step 4: Render Subtitle Cards via Playwright ---
   console.log(`[Typography Engine] Launching Playwright to render ${chunks.length} subtitle phrase cards...`);
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext({ viewport: { width: 1080, height: 500 }, deviceScaleFactor: 2 });
-  const page = await context.newPage();
+  const page = await browser.newPage({ viewport: { width: 1080, height: 500 } });
 
   const cardFiles = [];
   for (let i = 0; i < chunks.length; i++) {
     const chunk = chunks[i];
+    const cardPath = path.join(jobDir, `card_${String(i).padStart(2, '0')}.png`);
+    const arabicWords = chunk.arabic.split(/\s+/).length;
+    const arFontSize = arabicWords <= 3 ? 56 : 48;
+    const enFontSize = 24;
+
     const cardHtml = `
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
-<head>
-<meta charset="utf-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Outfit:wght@400;600;700&display=swap');
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    width: 1080px;
-    height: 500px;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .card-container {
-    width: 980px;
-    background: rgba(10, 16, 26, 0.72);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1.5px solid rgba(212, 175, 55, 0.55);
-    border-radius: 36px;
-    padding: 38px 46px 34px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65), 0 0 45px rgba(212, 175, 55, 0.22);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  .header-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.08));
-    border: 1px solid rgba(212, 175, 55, 0.6);
-    border-radius: 9999px;
-    padding: 4px 18px;
-    margin-bottom: 14px;
-  }
-  .header-text {
-    font-family: 'Outfit', sans-serif;
-    font-size: 21px;
-    font-weight: 700;
-    color: #F8E7A2;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .arabic-text {
-    font-family: 'Amiri Quran', serif;
-    font-size: 58px;
-    font-weight: 700;
-    color: #FFFFFF;
-    line-height: 1.6;
-    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85), 0 0 25px rgba(212, 175, 55, 0.35);
-    direction: rtl;
-    margin-bottom: 14px;
-    max-width: 900px;
-  }
-  .english-text {
-    font-family: 'Outfit', sans-serif;
-    font-size: 27px;
-    font-weight: 600;
-    color: #E2E8F0;
-    line-height: 1.35;
-    letter-spacing: 0.3px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
-    direction: ltr;
-    max-width: 880px;
-  }
-</style>
-</head>
-<body>
-  <div class="card-container">
-    <div class="header-badge">
-      <span class="header-text">سُورَةُ البَقَرَةِ • 2:${chunk.ayah}</span>
-    </div>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Plus+Jakarta+Sans:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0; padding: 0;
+        width: 1080px; height: 500px;
+        background: transparent;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        box-sizing: border-box;
+      }
+      .arabic-text {
+        font-family: 'Amiri Quran', serif;
+        color: #FFFFFF;
+        font-size: ${arFontSize}px;
+        line-height: 1.8;
+        text-align: center;
+        padding: 0 70px;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98), 0 0 14px rgba(0, 0, 0, 0.92);
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.95));
+      }
+      .english-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        direction: ltr;
+        color: #FDE68A;
+        font-size: ${enFontSize}px;
+        font-weight: 500;
+        letter-spacing: 0.4px;
+        line-height: 1.4;
+        text-align: center;
+        margin-top: 14px;
+        padding: 0 90px;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.98);
+        filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.95));
+      }
+    </style>
+  </head>
+  <body>
     <div class="arabic-text">${chunk.arabic}</div>
     <div class="english-text">${chunk.english}</div>
-  </div>
-</body>
+  </body>
 </html>
     `;
-    await page.setContent(cardHtml, { waitUntil: 'load' });
-    const cardPath = path.join(jobDir, `card_${String(i).padStart(2, '0')}.png`);
+    await page.setContent(cardHtml);
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(200);
     await page.screenshot({ path: cardPath, omitBackground: true });
     cardFiles.push(cardPath);
   }
@@ -411,91 +378,107 @@ export async function produceQuranV2Video({
   console.log(`[Typography Engine] All ${chunks.length} subtitle phrase cards rendered!`);
 
   // --- Step 5: Google Flow Visual Generation ---
-  const promptsPool = THEMATIC_CATEGORIES[category] || THEMATIC_CATEGORIES.majestic_mountains_skies;
-  const selectedPrompts = [];
-  for (let i = 0; i < imageCount; i++) {
-    selectedPrompts.push(promptsPool[i % promptsPool.length]);
-  }
-
-  console.log(`\n[Flow Visuals] Preparing ${selectedPrompts.length} prompts for category: "${category}"...`);
-  const token = getFlowToken();
-  const projectName = `QuranV2_${timestamp}`;
-
-  const scenesPayload = selectedPrompts.map((prompt, idx) => ({
-    prompt: prompt.endsWith('.') ? prompt : `${prompt}.`,
-    model: 'Nano Banana 2.1',
-    aspect_ratio: '9:16',
-    download_quality: 'original',
-    type: 'image',
-    scene: `scene-${String(idx + 1).padStart(2, '0')}`
-  }));
-
-  console.log(`[Flow Visuals] Submitting batch of ${scenesPayload.length} scenes to Google Flow via MCP...`);
-  let genRes;
-  for (let gAttempt = 1; gAttempt <= 3; gAttempt++) {
-    try {
-      genRes = await fetch(`${FLOW_API_BASE}/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
-        body: JSON.stringify({ project: projectName, scenes: scenesPayload })
-      });
-      if (genRes.ok) break;
-      const err = await genRes.text();
-      console.warn(`[Flow Visuals] Generate attempt ${gAttempt} returned ${genRes.status}: ${err}`);
-    } catch (e) {
-      console.warn(`[Flow Visuals] Generate attempt ${gAttempt} network error: ${e.message}`);
+  let sceneImages = [];
+  let existingScenes = true;
+  for (let i = 1; i <= imageCount; i++) {
+    const fPath = path.join(jobDir, `scene_${i}.jpeg`);
+    if (!fs.existsSync(fPath) || fs.statSync(fPath).size === 0) {
+      existingScenes = false;
+      break;
     }
-    await sleep(3000);
   }
 
-  if (!genRes || !genRes.ok) {
-    throw new Error(`Flow generate failed after 3 attempts`);
-  }
+  if (existingScenes) {
+    console.log(`[Flow Visuals] Reusing ${imageCount} existing high-res Flow scenes from ${jobDir}...`);
+    for (let i = 1; i <= imageCount; i++) {
+      sceneImages.push(path.join(jobDir, `scene_${i}.jpeg`));
+    }
+  } else {
+    const promptsPool = THEMATIC_CATEGORIES[category] || THEMATIC_CATEGORIES.majestic_mountains_skies;
+    const selectedPrompts = [];
+    for (let i = 0; i < imageCount; i++) {
+      selectedPrompts.push(promptsPool[i % promptsPool.length]);
+    }
 
-  const genData = await genRes.json();
-  const jobIds = (genData.jobs || []).map(j => j.id);
-  console.log(`[Flow Visuals] Flow jobs submitted: ${jobIds.map(id => id.slice(0, 8)).join(', ')}`);
+    console.log(`\n[Flow Visuals] Preparing ${selectedPrompts.length} prompts for category: "${category}"...`);
+    const token = getFlowToken();
+    const projectName = `QuranV2_${timestamp}`;
 
-  console.log(`[Flow Visuals] Waiting for all ${jobIds.length} scenes to complete (safe timeout 15m)...`);
-  const flowStart = Date.now();
-  let completedJobs = [];
+    const scenesPayload = selectedPrompts.map((prompt, idx) => ({
+      prompt: prompt.endsWith('.') ? prompt : `${prompt}.`,
+      model: 'Nano Banana 2.1',
+      aspect_ratio: '9:16',
+      download_quality: 'original',
+      type: 'image',
+      scene: `scene-${String(idx + 1).padStart(2, '0')}`
+    }));
 
-  while (Date.now() - flowStart < 15 * 60 * 1000) {
-    try {
-      const waitRes = await fetch(`${FLOW_API_BASE}/wait`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
-        body: JSON.stringify({ job_ids: jobIds, timeout_seconds: 30 })
-      });
-      if (waitRes.ok) {
-        const waitData = await waitRes.json();
-        const currentJobs = waitData.jobs || [];
-        const finished = currentJobs.filter(j => j.status === 'done');
-        console.log(`[Flow Visuals] Progress: ${finished.length}/${jobIds.length} scenes finished.`);
-        if (finished.length === jobIds.length) {
-          completedJobs = currentJobs;
-          break;
-        }
-      } else {
-        console.warn(`[Flow Visuals] Wait returned status ${waitRes.status}, continuing to poll...`);
+    console.log(`[Flow Visuals] Submitting batch of ${scenesPayload.length} scenes to Google Flow via MCP...`);
+    let genRes;
+    for (let gAttempt = 1; gAttempt <= 3; gAttempt++) {
+      try {
+        genRes = await fetch(`${FLOW_API_BASE}/generate`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
+          body: JSON.stringify({ project: projectName, scenes: scenesPayload })
+        });
+        if (genRes.ok) break;
+        const err = await genRes.text();
+        console.warn(`[Flow Visuals] Generate attempt ${gAttempt} returned ${genRes.status}: ${err}`);
+      } catch (e) {
+        console.warn(`[Flow Visuals] Generate attempt ${gAttempt} network error: ${e.message}`);
       }
-    } catch (waitErr) {
-      console.warn(`[Flow Visuals] Polling connection hiccup (${waitErr.message}), retrying in 4s...`);
+      await sleep(3000);
     }
-    await sleep(4000);
-  }
 
-  if (completedJobs.length < jobIds.length) {
-    throw new Error(`Flow scenes generation timed out! Finished: ${completedJobs.length}/${jobIds.length}`);
-  }
+    if (!genRes || !genRes.ok) {
+      throw new Error(`Flow generate failed after 3 attempts`);
+    }
 
-  const sceneImages = [];
-  for (let i = 0; i < imageCount; i++) {
-    const srcFile = completedJobs[i].files[0];
-    const targetFile = path.join(jobDir, `scene_${i + 1}.jpeg`);
-    fs.copyFileSync(srcFile, targetFile);
-    sceneImages.push(targetFile);
-    console.log(`[Flow Visuals] ✅ Scene ${i + 1} ready: ${targetFile}`);
+    const genData = await genRes.json();
+    const jobIds = (genData.jobs || []).map(j => j.id);
+    console.log(`[Flow Visuals] Flow jobs submitted: ${jobIds.map(id => id.slice(0, 8)).join(', ')}`);
+
+    console.log(`[Flow Visuals] Waiting for all ${jobIds.length} scenes to complete (safe timeout 15m)...`);
+    const flowStart = Date.now();
+    let completedJobs = [];
+
+    while (Date.now() - flowStart < 15 * 60 * 1000) {
+      try {
+        const waitRes = await fetch(`${FLOW_API_BASE}/wait`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
+          body: JSON.stringify({ job_ids: jobIds, timeout_seconds: 30 })
+        });
+        if (waitRes.ok) {
+          const waitData = await waitRes.json();
+          const currentJobs = waitData.jobs || [];
+          const finished = currentJobs.filter(j => j.status === 'done');
+          console.log(`[Flow Visuals] Progress: ${finished.length}/${jobIds.length} scenes finished.`);
+          if (finished.length === jobIds.length) {
+            completedJobs = currentJobs;
+            break;
+          }
+        } else {
+          console.warn(`[Flow Visuals] Wait returned status ${waitRes.status}, continuing to poll...`);
+        }
+      } catch (waitErr) {
+        console.warn(`[Flow Visuals] Polling connection hiccup (${waitErr.message}), retrying in 4s...`);
+      }
+      await sleep(4000);
+    }
+
+    if (completedJobs.length < imageCount) {
+      throw new Error(`Flow scenes generation timed out! Finished: ${completedJobs.length}/${imageCount}`);
+    }
+
+    for (let i = 0; i < imageCount; i++) {
+      const srcFile = completedJobs[i].files[0];
+      const targetFile = path.join(jobDir, `scene_${i + 1}.jpeg`);
+      fs.copyFileSync(srcFile, targetFile);
+      sceneImages.push(targetFile);
+      console.log(`[Flow Visuals] ✅ Scene ${i + 1} ready: ${targetFile}`);
+    }
   }
 
   // --- Step 6: Master FFmpeg Composite Pipeline ---
@@ -596,10 +579,16 @@ export async function produceQuranV2Video({
   console.log(`\n[GitHub Vault] Fetching release metadata for tag: "${RELEASE_TAG}"...`);
   const relRes = await ghFetch(`https://api.github.com/repos/${GITHUB_REPO}/releases/tags/${RELEASE_TAG}`);
   const release = await relRes.json();
+  const existingAsset = (release.assets || []).find(a => a.name === path.basename(outputMp4));
+  if (existingAsset) {
+    console.log(`[Upload] Deleting existing release asset ${path.basename(outputMp4)} (id: ${existingAsset.id})...`);
+    await ghFetch(`https://api.github.com/repos/${GITHUB_REPO}/releases/assets/${existingAsset.id}`, { method: 'DELETE' });
+    await sleep(2000);
+  }
   const downloadUrl = await uploadFile(release.upload_url, outputMp4, path.basename(outputMp4));
 
   // --- Step 8: Update Cloud Publish Queue ---
-  console.log(`[Cloud Queue] Enqueuing ${path.basename(outputMp4)} into cloud publish queue...`);
+  console.log(`[Cloud Queue] Updating ${path.basename(outputMp4)} in cloud publish queue...`);
   let cloudQueue = { items: [] };
   if (fs.existsSync(QUEUE_FILE)) {
     try { cloudQueue = JSON.parse(fs.readFileSync(QUEUE_FILE, 'utf-8')); } catch {}
@@ -608,8 +597,9 @@ export async function produceQuranV2Video({
   const reelTitle = `Surah Al-Baqarah (2:${startAyah}-${endAyah}) | Sheikh Al-Minshawi (المنشاوي)`;
   const reelCaption = `سورة البقرة الآيات (${startAyah} - ${endAyah})\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (${startAyah} - ${endAyah}) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2`;
 
-  cloudQueue.items.push({
-    id: `quran_v2_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+  const existingQueueIdx = cloudQueue.items.findIndex(i => i.videoFilename === path.basename(outputMp4));
+  const queueEntry = {
+    id: existingQueueIdx >= 0 ? cloudQueue.items[existingQueueIdx].id : `quran_v2_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
     jobId: path.basename(outputMp4, '.mp4'),
     title: reelTitle,
     caption: reelCaption,
@@ -618,9 +608,14 @@ export async function produceQuranV2Video({
     surah,
     engine: 'quran_v2_minshawi',
     status: 'pending',
-    createdAt: new Date().toISOString(),
+    createdAt: existingQueueIdx >= 0 ? cloudQueue.items[existingQueueIdx].createdAt : new Date().toISOString(),
     publishedAt: null
-  });
+  };
+  if (existingQueueIdx >= 0) {
+    cloudQueue.items[existingQueueIdx] = queueEntry;
+  } else {
+    cloudQueue.items.push(queueEntry);
+  }
   cloudQueue.updatedAt = new Date().toISOString();
   fs.writeFileSync(QUEUE_FILE, JSON.stringify(cloudQueue, null, 2), 'utf-8');
 
@@ -630,7 +625,7 @@ export async function produceQuranV2Video({
     try { state = JSON.parse(fs.readFileSync(STATE_FILE, 'utf-8')); } catch {}
   }
   state.currentSurah = surah;
-  state.nextAyah = endAyah + 1;
+  state.nextAyah = Math.max(state.nextAyah || 1, endAyah + 1);
   state.lastRunAt = new Date().toISOString();
   state.lastBatch = {
     surahRange: `2:${startAyah} -> 2:${endAyah}`,
@@ -641,14 +636,20 @@ export async function produceQuranV2Video({
     outputMp4: path.basename(outputMp4),
     completedAt: new Date().toISOString()
   };
-  state.history.push({
+  const existingHistoryIdx = state.history.findIndex(h => h.outputFile === path.basename(outputMp4));
+  const historyEntry = {
     start: `2:${startAyah}`,
     end: `2:${endAyah}`,
     duration: totalDuration.toFixed(2),
     category,
     outputFile: path.basename(outputMp4),
     timestamp: new Date().toISOString()
-  });
+  };
+  if (existingHistoryIdx >= 0) {
+    state.history[existingHistoryIdx] = historyEntry;
+  } else {
+    state.history.push(historyEntry);
+  }
   fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), 'utf-8');
   console.log(`[State Tracker] Progress updated! Next Ayah is: 2:${state.nextAyah}`);
 
