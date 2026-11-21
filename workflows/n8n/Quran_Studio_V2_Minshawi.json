@@ -1,0 +1,218 @@
+{
+  "name": "Quran Studio V2 - Minshawi Visuals & Multi-Ayah Engine",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-manual-trigger-v2",
+      "name": "When clicking 'Execute Workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-quran-v2-minshawi",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook-trigger-v2",
+      "name": "Webhook Trigger (Quran V2 Minshawi)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        440
+      ],
+      "webhookId": "quran-studio-webhook-v2"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-trigger-v2",
+      "name": "Daily Quran V2 Generation (Schedule)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.item.json || {};\nconst body = input.body || input;\n\nreturn {\n  json: {\n    engine: 'quran_v2_minshawi',\n    reciter: 'Sheikh Muhammad Siddiq Al-Minshawi (Murattal)',\n    category: body.category || 'cascading_waterfalls_rivers',\n    surah: body.surah || null,\n    startAyah: body.startAyah || null,\n    count: body.count || null,\n    theme: 'thematic_nature',\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "node-configure-params-v2",
+      "name": "Configure Quran V2 Parameters",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5056/generate-quran-reel-v2",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"engine\": \"quran_v2_minshawi\",\n  \"category\": \"{{ $json.category }}\",\n  \"surah\": {{ $json.surah !== null ? $json.surah : 'null' }},\n  \"startAyah\": {{ $json.startAyah !== null ? $json.startAyah : 'null' }}\n}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "id": "node-render-engine-v2",
+      "name": "Render Reel (Quran V2 Minshawi Engine)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.docker_stream_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "video_file"
+            }
+          },
+          "timeout": 120000
+        }
+      },
+      "id": "node-download-binary-v2",
+      "name": "Fetch Rendered Video Binary",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const reel = $input.item.json;\nconst verses = reel.verses || [];\nconst arabicFullText = verses.map(v => v.text || v.arabic).filter(Boolean).join(' ۝ ');\nconst verseKeys = verses.map(v => v.key || `${v.surah}:${v.ayah}`).filter(Boolean).join(', ');\n\nconst title = reel.title || `Surah ${reel.surah || 2}`;\nconst caption = `${title}\\n\\n\"${arabicFullText}\"\\n\\nReciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي) 🕊️✨\\n\\nRelax your heart and find peace in the words of the Almighty.\\n\\n#quran #minshawi #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok`;\n\nconst videoUrl = reel.public_stream_url || reel.stream_url || `http://localhost:5056/stream/reel_${reel.job_id}.mp4`;\n\nreturn {\n  json: {\n    title,\n    caption,\n    reciter: 'Sheikh Muhammad Siddiq Al-Minshawi',\n    job_id: reel.job_id,\n    surah: reel.surah,\n    verses: verseKeys,\n    duration_seconds: reel.duration_seconds,\n    public_stream_url: videoUrl,\n    local_file_path: reel.local_file_path\n  }\n};"
+      },
+      "id": "node-format-social-v2",
+      "name": "Format Quran V2 Metadata",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "firstIncomingItem",
+        "options": {}
+      },
+      "id": "node-respond-webhook-v2",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        440
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking 'Execute Workflow'": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran V2 Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger (Quran V2 Minshawi)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran V2 Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Quran V2 Generation (Schedule)": {
+      "main": [
+        [
+          {
+            "node": "Configure Quran V2 Parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configure Quran V2 Parameters": {
+      "main": [
+        [
+          {
+            "node": "Render Reel (Quran V2 Minshawi Engine)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Render Reel (Quran V2 Minshawi Engine)": {
+      "main": [
+        [
+          {
+            "node": "Fetch Rendered Video Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Rendered Video Binary": {
+      "main": [
+        [
+          {
+            "node": "Format Quran V2 Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Quran V2 Metadata": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

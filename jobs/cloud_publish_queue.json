@@ -540,7 +540,33 @@
           "status": "scheduled"
         }
       ]
+    },
+    {
+      "id": "quran_v2_1795278723678_avnteo",
+      "jobId": "quran_v2_minshawi_1795203069602_output",
+      "title": "Surah Al-Fatihah & Surah Al-Baqarah (1:1 - 2:3)",
+      "caption": "Surah Al-Fatihah & Surah Al-Baqarah (1:1 - 2:3)\n\n\"بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ۝ ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ ۝ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ۝ مَـٰلِكِ يَوْمِ ٱلدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ ۝ صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ ۝ الٓمٓ ۝ ذَٰلِكَ ٱلْكِتَـٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى لِّلْمُتَّقِينَ ۝ ٱلَّذِينَ يُؤْمِنُونَ بِٱلْغَيْبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقْنَـٰهُمْ يُنفِقُونَ\"\n\nReciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي) 🕊️✨\n\nRelax your heart and find peace in the words of the Almighty.\n\n#quran #minshawi #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok",
+      "videoFilename": "quran_v2_minshawi_1795203069602_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795203069602_output.mp4",
+      "surah": 1,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T16:32:03.698Z",
+      "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795278735892_bqtmlp",
+      "jobId": "quran_v2_minshawi_1795207161573_output",
+      "title": "Surah Al-Baqarah (2:4 - 2:7)",
+      "caption": "Surah Al-Baqarah (2:4 - 2:7)\n\n\"وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْـَٔاخِرَةِ هُمْ يُوقِنُونَ ۝ أُو۟لَـٰٓئِكَ عَلَىٰ هُدًۭى مِّن رَّبِّهِمْ ۖ وَأُو۟لَـٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ ۝ إِنَّ ٱلَّذِينَ كَفَرُوا۟ سَوَآءٌ عَلَيْهِمْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ ۝ خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ ۖ وَعَلَىٰٓ أَبْصَـٰرِهِمْ غِشَـٰوَةٌۭ ۖ وَلَهُمْ عَذَابٌ عَظِيمٌ\"\n\nReciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي) 🕊️✨\n\nRelax your heart and find peace in the words of the Almighty.\n\n#quran #minshawi #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok",
+      "videoFilename": "quran_v2_minshawi_1795207161573_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795207161573_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T16:32:15.892Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-14T19:52:52.336Z"
+  "updatedAt": "2026-11-21T16:32:15.892Z"
 }
