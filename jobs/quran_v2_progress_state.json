@@ -1,17 +1,17 @@
 {
   "currentSurah": 2,
-  "nextAyah": 24,
+  "nextAyah": 26,
   "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
   "reciterId": 9,
-  "lastRunAt": "2026-11-21T18:27:36.962Z",
+  "lastRunAt": "2026-11-21T19:19:25.339Z",
   "lastBatch": {
-    "surahRange": "2:22 -> 2:23",
-    "duration": 54.46,
-    "category": "misty_forests_big_trees",
-    "imageDuration": 9.076666666666666,
-    "imageCount": 6,
-    "outputMp4": "quran_v2_minshawi_1795284959354_output.mp4",
-    "completedAt": "2026-11-21T18:27:36.962Z"
+    "surahRange": "2:23 -> 2:25",
+    "duration": 76.113,
+    "category": "grand_mosques",
+    "imageDuration": 9.514125,
+    "imageCount": 8,
+    "outputMp4": "quran_v2_minshawi_1795287674552_output.mp4",
+    "completedAt": "2026-11-21T19:19:25.339Z"
   },
   "history": [
     {
@@ -69,6 +69,14 @@
       "category": "misty_forests_big_trees",
       "outputFile": "quran_v2_minshawi_1795284959354_output.mp4",
       "timestamp": "2026-11-21T18:27:36.962Z"
+    },
+    {
+      "start": "2:23",
+      "end": "2:25",
+      "duration": "76.11",
+      "category": "grand_mosques",
+      "outputFile": "quran_v2_minshawi_1795287674552_output.mp4",
+      "timestamp": "2026-11-21T19:19:25.339Z"
     }
   ]
 }
