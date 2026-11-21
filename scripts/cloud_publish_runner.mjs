@@ -22,10 +22,14 @@ const BUFFER_TOKEN = process.env.BUFFER_TOKEN || 'UzOAWwEy9YPqjz67tZ6sqeyt2hqv0U
 const BUFFER_API_URL = 'https://api.buffer.com';
 
 const CHANNELS = [
-  // YouTube disabled temporarily per user request (focusing on TikTok & Facebook)
+  {
+    channelName: 'YouTube Shorts',
+    channelId: '6af071d462b70b94b0bde992',
+    service: 'youtube'
+  },
   {
     channelName: 'TikTok',
-    channelId: '6af072a762b70b94b0be017e',
+    channelId: '6afafea9ece6dfde5fe3e185',
     service: 'tiktok'
   },
   {
