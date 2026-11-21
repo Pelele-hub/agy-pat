@@ -1,9 +1,9 @@
-name: Daily 6:00 PM Quran Reel Publisher
+name: Daily 8:00 AM & 8:00 PM Quran Reel Publisher
 
 on:
   schedule:
-    # 18:00 UTC = 6:00 PM Morocco / UK / UTC
-    - cron: '0 18 * * *'
+    # 08:00 UTC = 8:00 AM & 20:00 UTC = 8:00 PM (Morocco / UTC)
+    - cron: '0 8,20 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab anytime
 
 permissions:
