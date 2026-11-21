@@ -1,0 +1,50 @@
+{
+  "currentSurah": 2,
+  "nextAyah": 16,
+  "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
+  "reciterId": 9,
+  "lastRunAt": "2026-11-21T17:12:46.925Z",
+  "lastBatch": {
+    "surahRange": "2:13 -> 2:15",
+    "duration": 65.94,
+    "category": "al_madinah",
+    "imageDuration": 9.42,
+    "imageCount": 7,
+    "outputMp4": "quran_v2_minshawi_1795280414004_output.mp4",
+    "completedAt": "2026-11-21T17:12:46.925Z"
+  },
+  "history": [
+    {
+      "start": "1:1",
+      "end": "2:3",
+      "duration": "73.08",
+      "category": "cascading_waterfalls_rivers",
+      "outputFile": "quran_v2_minshawi_1795203069602_output.mp4",
+      "timestamp": "2026-11-20T19:54:23.337Z"
+    },
+    {
+      "start": "2:4",
+      "end": "2:7",
+      "duration": "63.49",
+      "category": "misty_forests_big_trees",
+      "outputFile": "quran_v2_minshawi_1795207161573_output.mp4",
+      "timestamp": "2026-11-20T20:50:25.784Z"
+    },
+    {
+      "start": "2:8",
+      "end": "2:12",
+      "duration": "68.21",
+      "category": "grand_mosques",
+      "outputFile": "quran_v2_minshawi_1795279185954_output.mp4",
+      "timestamp": "2026-11-21T16:53:00.026Z"
+    },
+    {
+      "start": "2:13",
+      "end": "2:15",
+      "duration": "65.94",
+      "category": "al_madinah",
+      "outputFile": "quran_v2_minshawi_1795280414004_output.mp4",
+      "timestamp": "2026-11-21T17:12:46.925Z"
+    }
+  ]
+}

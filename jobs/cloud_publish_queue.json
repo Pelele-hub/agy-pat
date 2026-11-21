@@ -579,7 +579,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T16:53:59.542Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795281166923_tnw115",
+      "jobId": "quran_v2_minshawi_1795280414004_output",
+      "title": "Surah Al-Baqarah (2:13 - 2:15)",
+      "caption": "Surah Al-Baqarah (2:13 - 2:15)\n\n\"وَإِذَا قِيلَ لَهُمْ ءَامِنُوا۟ كَمَآ ءَامَنَ ٱلنَّاسُ قَالُوٓا۟ أَنُؤْمِنُ كَمَآ ءَامَنَ ٱلسُّفَهَآءُ ۗ أَلَآ إِنَّهُمْ هُمُ ٱلسُّفَهَآءُ وَلَـٰكِن لَّا يَعْلَمُونَ ۝ وَإِذَا لَقُوا۟ ٱلَّذِينَ ءَامَنُوا۟ قَالُوٓا۟ ءَامَنَّا وَإِذَا خَلَوْا۟ إِلَىٰ شَيَـٰطِينِهِمْ قَالُوٓا۟ إِنَّا مَعَكُمْ إِنَّمَا نَحْنُ مُسْتَهْزِءُونَ ۝ ٱللَّهُ يَسْتَهْزِئُ بِهِمْ وَيَمُدُّهُمْ فِى طُغْيَـٰنِهِمْ يَعْمَهُونَ\"\n\nReciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي) 🕊️✨\n\nRelax your heart and find peace in the words of the Almighty.\n\n#quran #minshawi #islam #relaxation #quranrecitation #peace #reels #shorts #tiktok",
+      "videoFilename": "quran_v2_minshawi_1795280414004_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795280414004_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T17:12:46.923Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T16:53:59.544Z"
+  "updatedAt": "2026-11-21T17:12:46.923Z"
 }
