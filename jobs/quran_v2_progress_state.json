@@ -3,15 +3,15 @@
   "nextAyah": 35,
   "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
   "reciterId": 9,
-  "lastRunAt": "2026-11-21T20:44:57.619Z",
+  "lastRunAt": "2026-11-21T20:47:34.488Z",
   "lastBatch": {
-    "surahRange": "2:23 -> 2:25",
-    "duration": 76.113,
-    "category": "grand_mosques",
-    "imageDuration": 9.514125,
-    "imageCount": 8,
-    "outputMp4": "quran_v2_minshawi_1795287674552_output.mp4",
-    "completedAt": "2026-11-21T20:44:57.619Z"
+    "surahRange": "2:25 -> 2:27",
+    "duration": 66.557,
+    "category": "al_madinah",
+    "imageDuration": 9.508142857142857,
+    "imageCount": 7,
+    "outputMp4": "quran_v2_minshawi_1795288768844_output.mp4",
+    "completedAt": "2026-11-21T20:47:34.488Z"
   },
   "history": [
     {
@@ -84,7 +84,7 @@
       "duration": "66.56",
       "category": "al_madinah",
       "outputFile": "quran_v2_minshawi_1795288768844_output.mp4",
-      "timestamp": "2026-11-21T19:32:40.048Z"
+      "timestamp": "2026-11-21T20:47:34.488Z"
     },
     {
       "start": "2:27",
