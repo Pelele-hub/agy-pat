@@ -683,7 +683,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T19:58:44.965Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795292045206_jl5rvw",
+      "jobId": "quran_v2_minshawi_1795291127658_output",
+      "title": "Surah Al-Baqarah (2:32-34) | Sheikh Al-Minshawi (المنشاوي)",
+      "caption": "سورة البقرة الآيات (32 - 34)\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (32 - 34) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2",
+      "videoFilename": "quran_v2_minshawi_1795291127658_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795291127658_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T20:14:05.206Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T19:58:44.965Z"
+  "updatedAt": "2026-11-21T20:14:05.206Z"
 }

@@ -1,17 +1,17 @@
 {
   "currentSurah": 2,
-  "nextAyah": 32,
+  "nextAyah": 35,
   "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
   "reciterId": 9,
-  "lastRunAt": "2026-11-21T19:58:44.967Z",
+  "lastRunAt": "2026-11-21T20:14:05.208Z",
   "lastBatch": {
-    "surahRange": "2:30 -> 2:31",
-    "duration": 68.58,
-    "category": "cascading_waterfalls_rivers",
-    "imageDuration": 9.797142857142857,
-    "imageCount": 7,
-    "outputMp4": "quran_v2_minshawi_1795290345817_output.mp4",
-    "completedAt": "2026-11-21T19:58:44.967Z"
+    "surahRange": "2:32 -> 2:34",
+    "duration": 73.46,
+    "category": "misty_forests_big_trees",
+    "imageDuration": 9.1825,
+    "imageCount": 8,
+    "outputMp4": "quran_v2_minshawi_1795291127658_output.mp4",
+    "completedAt": "2026-11-21T20:14:05.208Z"
   },
   "history": [
     {
@@ -101,6 +101,14 @@
       "category": "cascading_waterfalls_rivers",
       "outputFile": "quran_v2_minshawi_1795290345817_output.mp4",
       "timestamp": "2026-11-21T19:58:44.967Z"
+    },
+    {
+      "start": "2:32",
+      "end": "2:34",
+      "duration": "73.46",
+      "category": "misty_forests_big_trees",
+      "outputFile": "quran_v2_minshawi_1795291127658_output.mp4",
+      "timestamp": "2026-11-21T20:14:05.208Z"
     }
   ]
 }
