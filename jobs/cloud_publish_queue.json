@@ -644,7 +644,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T19:19:25.337Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795289560046_239pia",
+      "jobId": "quran_v2_minshawi_1795288768844_output",
+      "title": "Surah Al-Baqarah (2:25-27) | Sheikh Al-Minshawi (المنشاوي)",
+      "caption": "سورة البقرة الآيات (25 - 27)\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (25 - 27) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2",
+      "videoFilename": "quran_v2_minshawi_1795288768844_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795288768844_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T19:32:40.046Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T19:19:25.337Z"
+  "updatedAt": "2026-11-21T19:32:40.046Z"
 }
