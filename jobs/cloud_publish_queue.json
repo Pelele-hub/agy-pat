@@ -670,7 +670,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T19:45:43.019Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795291124965_u8iece",
+      "jobId": "quran_v2_minshawi_1795290345817_output",
+      "title": "Surah Al-Baqarah (2:30-31) | Sheikh Al-Minshawi (المنشاوي)",
+      "caption": "سورة البقرة الآيات (30 - 31)\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (30 - 31) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2",
+      "videoFilename": "quran_v2_minshawi_1795290345817_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795290345817_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T19:58:44.965Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T19:45:43.019Z"
+  "updatedAt": "2026-11-21T19:58:44.965Z"
 }
