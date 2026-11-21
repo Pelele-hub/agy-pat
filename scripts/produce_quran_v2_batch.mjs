@@ -38,7 +38,10 @@ export const THEMATIC_CATEGORIES = {
     "Cinematic vertical 9:16 majestic tiered waterfall in an enchanted bamboo and weeping willow forest at dawn, ethereal morning fog rising from the calm plunge pool, spiritual serenity, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 high-angle shot looking down at a tranquil crystal-clear turquoise river pool surrounded by ancient ferns and blooming water lilies, gentle sunlight filtering through trees, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 serene view of a calm river estuary at blue hour twilight, still reflective mirror water reflecting distant mountain silhouettes and a faint crescent moon, 4k, clean frame, absolutely no watermarks, no logos, no text",
-    "Cinematic vertical 9:16 close-up of a gentle veil waterfall flowing softly like silk into an emerald forest pool, lush hanging vines and soft ambient morning light, 4k hyper-realistic, clean frame, absolutely no watermarks, no logos, no text"
+    "Cinematic vertical 9:16 close-up of a gentle veil waterfall flowing softly like silk into an emerald forest pool, lush hanging vines and soft ambient morning light, 4k hyper-realistic, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 drone shot flying smoothly over a roaring crystal clear alpine river cutting through lush emerald moss canyons at sunrise, 4k hyper-realistic, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 serene hidden waterfall pouring into a deep turquoise grotto pool, soft sunbeams filtering through cave opening, peaceful tranquility, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 wide peaceful sunset over a tranquil river bend lined with flowering reeds and gentle weeping willows, golden pink reflections on water, 4k, clean frame, absolutely no watermarks, no logos, no text"
   ],
   misty_forests_big_trees: [
     "Cinematic vertical 9:16 towering ancient redwood giant trees shrouded in soft rolling morning fog, ethereal golden sunbeams streaming through the lush green canopy, majestic, tranquil, 4k, clean frame, absolutely no watermarks, no logos, no text",
@@ -47,7 +50,10 @@ export const THEMATIC_CATEGORIES = {
     "Cinematic vertical 9:16 tranquil sun-dappled grove of giant birch trees in a quiet morning valley, soft dewdrops glistening on lush green ferns, spiritual peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 panoramic view of an expansive ancient forest canopy rolling across misty mountain ridges at golden sunrise, 4k hyper-realistic, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 intimate close-up of an ancient gnarly oak tree branch draped in soft emerald moss, gentle golden morning light illuminating dancing dust motes, 4k, clean frame, absolutely no watermarks, no logos, no text",
-    "Cinematic vertical 9:16 serene deep woodland stream flowing softly between massive mossy tree trunks at dawn, sunbeams breaking through canopy, 4k, clean frame, absolutely no watermarks, no logos, no text"
+    "Cinematic vertical 9:16 serene deep woodland stream flowing softly between massive mossy tree trunks at dawn, sunbeams breaking through canopy, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 magical sunlit grove in an ancient cedar forest, golden ethereal light filtering through misty branches, lush carpet of emerald moss, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 towering mossy ancient forest giants reflected in a still, glass-like forest tarn at dawn, soft rolling mist, spiritual peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 high canopy shot looking up through ancient autumn maple and cedar branches as morning sunlight dances on falling golden leaves, 4k, clean frame, absolutely no watermarks, no logos, no text"
   ],
   grand_mosques: [
     "Cinematic vertical 9:16 low-angle shot of a majestic grand white marble mosque courtyard at dawn, polished mirror marble reflecting soft lavender sunrise clouds and glowing warm lanterns, tranquil, spiritual, 4k, clean frame, absolutely no watermarks, no logos, no text",
@@ -56,7 +62,10 @@ export const THEMATIC_CATEGORIES = {
     "Cinematic vertical 9:16 close-up architectural shot of elegant arabesque carved marble pillars and illuminated lanterns inside a peaceful prayer hall, soft morning light beams, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 high-angle view over majestic turquoise and gold domes of an ancient grand mosque emerging through soft dawn mist, spiritual peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 dusk view of a breathtaking grand mosque with illuminated white domes reflected in perfectly still reflecting pool, deep indigo evening sky with crescent moon, 4k, clean frame, absolutely no watermarks, no logos, no text",
-    "Cinematic vertical 9:16 intricate ceiling dome with gold arabesque mosaic patterns and a grand warm chandelier softly glowing in quiet mosque interior, 4k, clean frame, absolutely no watermarks, no logos, no text"
+    "Cinematic vertical 9:16 intricate ceiling dome with gold arabesque mosaic patterns and a grand warm chandelier softly glowing in quiet mosque interior, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 wide breathtaking view of grand white marble mosque arches framing a calm reflecting pool under a soft golden dawn sky, ethereal peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 majestic soaring minaret rising into a peaceful twilight sky with a delicate crescent moon, warm lantern glow on carved stone, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 interior perspective of a quiet grand mosque prayer hall with sunlight streaming through stained glass arches onto ornate carpets, spiritual tranquility, 4k, clean frame, absolutely no watermarks, no logos, no text"
   ],
   al_madinah: [
     "Cinematic vertical 9:16 serene view of Al-Madinah Al-Munawwarah giant shaded architectural umbrellas open in the courtyard at golden dawn, soft warm light, spiritual peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
@@ -65,7 +74,10 @@ export const THEMATIC_CATEGORIES = {
     "Cinematic vertical 9:16 close-up of intricate gold Arabic calligraphy and green marble architectural motifs in Medina, soft ambient illumination, spiritual elegance, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 tranquil twilight view of Medina skyline with illuminated domes against a serene violet and amber sunset sky, peaceful atmosphere, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 early morning view across the quiet Medina marble plaza with morning mist kissing distant mountains, soft warm sunbeams, 4k, clean frame, absolutely no watermarks, no logos, no text",
-    "Cinematic vertical 9:16 breathtaking low angle view of illuminated white and green domes of Medina under a tranquil starry night sky, ethereal golden glow, 4k, clean frame, absolutely no watermarks, no logos, no text"
+    "Cinematic vertical 9:16 breathtaking low angle view of illuminated white and green domes of Medina under a tranquil starry night sky, ethereal golden glow, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 serene panoramic view of the Prophet's Mosque courtyard with illuminated green dome and minarets against an amber sunset, peaceful spiritual serenity, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 close-up of polished white marble courtyard tiles reflecting the warm glow of evening lanterns at Al-Madinah Al-Munawwarah, tranquil atmosphere, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 beautiful dawn view over Al-Madinah Al-Munawwarah with soft purple morning clouds and gentle sun rays illuminating the mosque skyline, 4k, clean frame, absolutely no watermarks, no logos, no text"
   ],
   majestic_mountains_skies: [
     "Cinematic vertical 9:16 breathtaking view of towering snow-dusted alpine mountain peaks bathed in ethereal rose-gold morning light, tranquil sea of clouds rolling gently below, spiritual awe, 4k, clean frame, absolutely no watermarks, no logos, no text",
@@ -74,7 +86,10 @@ export const THEMATIC_CATEGORIES = {
     "Cinematic vertical 9:16 dramatic cloudscape of majestic golden sunbeams piercing through billowing thundercloud formations over distant peaks, heavenly and calm, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 starry night sky filled with the glowing Milky Way galaxy arching gracefully over tranquil silhouetted mountain ridges, spiritual peace, 4k, clean frame, absolutely no watermarks, no logos, no text",
     "Cinematic vertical 9:16 serene mountain plateau with calm reflective lake mirroring the towering cliffs and soft pastel morning sky, crystal clear water, 4k, clean frame, absolutely no watermarks, no logos, no text",
-    "Cinematic vertical 9:16 majestic aerial perspective flying above glowing sunset clouds toward sharp mountain silhouettes under twilight sky, 4k, clean frame, absolutely no watermarks, no logos, no text"
+    "Cinematic vertical 9:16 majestic aerial perspective flying above glowing sunset clouds toward sharp mountain silhouettes under twilight sky, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 sweeping aerial view of majestic snow-capped mountain peaks rising above an endless ocean of golden sunrise clouds, awe-inspiring tranquility, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 peaceful alpine lake nestled at the foot of towering granite peaks at twilight, crystal mirror reflections of starry cosmos, 4k, clean frame, absolutely no watermarks, no logos, no text",
+    "Cinematic vertical 9:16 dramatic sunbeams breaking through morning mist over rolling alpine meadows and distant rugged mountain spires, 4k, clean frame, absolutely no watermarks, no logos, no text"
   ]
 };
 
@@ -115,32 +130,49 @@ async function ghFetch(url, options = {}) {
 async function uploadFile(uploadUrlTemplate, filePath, filename) {
   const uploadUrl = uploadUrlTemplate.replace(/\{.*\}/, `?name=${encodeURIComponent(filename)}`);
   const stats = fs.statSync(filePath);
-  const stream = fs.createReadStream(filePath);
 
   console.log(`[Upload] Uploading ${filename} (${(stats.size / 1024 / 1024).toFixed(1)} MB)...`);
-  const res = await ghFetch(uploadUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'video/mp4',
-      'Content-Length': stats.size.toString()
-    },
-    body: stream,
-    duplex: 'half'
-  });
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const stream = fs.createReadStream(filePath);
+      const res = await ghFetch(uploadUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'video/mp4',
+          'Content-Length': stats.size.toString()
+        },
+        body: stream,
+        duplex: 'half'
+      });
 
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Upload failed (${res.status}): ${err}`);
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Upload failed (${res.status}): ${err}`);
+      }
+
+      const asset = await res.json();
+      console.log(`[Upload] ✓ Successfully uploaded! Permanent URL: ${asset.browser_download_url}`);
+      return asset.browser_download_url;
+    } catch (upErr) {
+      console.warn(`[Upload Warning] Upload attempt ${attempt} failed: ${upErr.message}`);
+      if (attempt === 3) throw upErr;
+      await sleep(3000);
+    }
   }
-
-  const asset = await res.json();
-  console.log(`[Upload] ✓ Successfully uploaded! Permanent URL: ${asset.browser_download_url}`);
-  return asset.browser_download_url;
 }
 
-export async function fetchBatchData(surah, startAyah, endAyah) {
+export async function fetchBatchData(surah, startAyah, endAyah, startWord = 1, endWord = null) {
   console.log(`[Quran API] Fetching recitation timestamps for Surah ${surah} (Sheikh Minshawi)...`);
-  const recRes = await fetch(`https://api.quran.com/api/v4/chapter_recitations/9/${surah}?segments=true`).then(r => r.json());
+  let recRes;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      recRes = await fetch(`https://api.quran.com/api/v4/chapter_recitations/9/${surah}?segments=true`).then(r => r.json());
+      if (recRes && recRes.audio_file) break;
+    } catch (err) {
+      if (attempt === 3) throw err;
+      await sleep(2000);
+    }
+  }
   const timestamps = recRes.audio_file.timestamps;
 
   const startItem = timestamps.find(t => t.verse_key === `${surah}:${startAyah}`);
@@ -149,8 +181,14 @@ export async function fetchBatchData(surah, startAyah, endAyah) {
     throw new Error(`Could not find timestamps for ${surah}:${startAyah} or ${surah}:${endAyah}`);
   }
 
-  const batchStartMs = startItem.timestamp_from;
-  const batchEndMs = endItem.timestamp_to;
+  const batchStartMs = (startWord > 1 && startItem.segments && startItem.segments[startWord - 1])
+    ? startItem.segments[startWord - 1][1]
+    : startItem.timestamp_from;
+
+  const batchEndMs = (endWord && endItem.segments && endItem.segments[endWord - 1])
+    ? endItem.segments[endWord - 1][2]
+    : endItem.timestamp_to;
+
   const totalDuration = (batchEndMs - batchStartMs) / 1000;
 
   console.log(`[Quran API] Slicing range: ${batchStartMs}ms -> ${batchEndMs}ms (${totalDuration.toFixed(2)}s)`);
@@ -161,9 +199,24 @@ export async function fetchBatchData(surah, startAyah, endAyah) {
     const verseKey = `${surah}:${a}`;
     const tsItem = timestamps.find(t => t.verse_key === verseKey);
     const vUrl = `https://api.quran.com/api/v4/verses/by_key/${verseKey}?words=true&translations=131&word_fields=text_uthmani`;
-    const vRes = await fetch(vUrl).then(r => r.json());
-    const words = vRes.verse.words.filter(w => w.char_type_name === 'word');
-    const segments = tsItem.segments || [];
+    let vRes;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        vRes = await fetch(vUrl).then(r => r.json());
+        if (vRes && vRes.verse) break;
+      } catch (err) {
+        if (attempt === 3) throw err;
+        await sleep(1500);
+      }
+    }
+    const allWords = vRes.verse.words.filter(w => w.char_type_name === 'word');
+    const allSegs = tsItem.segments || [];
+
+    const startIdx = (a === startAyah && startWord > 1) ? startWord - 1 : 0;
+    const endIdx = (a === endAyah && endWord) ? endWord : allWords.length;
+
+    const words = allWords.slice(startIdx, endIdx);
+    const segs = allSegs.slice(startIdx, endIdx);
 
     let i = 0;
     while (i < words.length) {
@@ -173,9 +226,9 @@ export async function fetchBatchData(surah, startAyah, endAyah) {
       else if (rem <= 3) take = rem;
 
       const chunkWords = words.slice(i, i + take);
-      const segStart = segments[i] ? segments[i][1] : tsItem.timestamp_from;
-      const lastSegIdx = Math.min(i + take - 1, segments.length - 1);
-      const segEnd = segments[lastSegIdx] ? segments[lastSegIdx][2] : tsItem.timestamp_to;
+      const segStart = segs[i] ? segs[i][1] : tsItem.timestamp_from;
+      const lastSegIdx = Math.min(i + take - 1, segs.length - 1);
+      const segEnd = segs[lastSegIdx] ? segs[lastSegIdx][2] : tsItem.timestamp_to;
 
       const arabic = chunkWords.map(w => w.text_uthmani).join(' ');
       const english = chunkWords.map(w => w.translation ? w.translation.text : '').join(' ')
@@ -207,6 +260,8 @@ export async function produceQuranV2Video({
   surah = 2,
   startAyah,
   endAyah,
+  startWord = 1,
+  endWord = null,
   category,
   seriesNumber
 }) {
@@ -219,7 +274,7 @@ export async function produceQuranV2Video({
   console.log(`[Quran Studio V2] BATCH PRODUCTION (Series #${seriesNumber})`);
   console.log(`Job ID: ${jobId}`);
   console.log(`Reciter: Sheikh Muhammad Siddiq Al-Minshawi (الشيخ محمد صديق المنشاوي)`);
-  console.log(`Passage: Surah ${surah}:${startAyah} - ${surah}:${endAyah}`);
+  console.log(`Passage: Surah ${surah}:${startAyah} (word ${startWord}) - ${surah}:${endAyah} (word ${endWord || 'end'})`);
   console.log(`Category: "${category}"`);
   console.log(`======================================================\n`);
 
@@ -227,7 +282,7 @@ export async function produceQuranV2Video({
   await verifyFlowBridge();
 
   // --- Step 2: Fetch Quran Data & Timings ---
-  const { batchStartMs, batchEndMs, totalDuration, chunks } = await fetchBatchData(surah, startAyah, endAyah);
+  const { batchStartMs, batchEndMs, totalDuration, chunks } = await fetchBatchData(surah, startAyah, endAyah, startWord, endWord);
 
   const imageCount = Math.max(5, Math.min(8, Math.round(totalDuration / 9.2)));
   const sceneDur = totalDuration / imageCount;
@@ -357,7 +412,10 @@ export async function produceQuranV2Video({
 
   // --- Step 5: Google Flow Visual Generation ---
   const promptsPool = THEMATIC_CATEGORIES[category] || THEMATIC_CATEGORIES.majestic_mountains_skies;
-  const selectedPrompts = promptsPool.slice(0, imageCount);
+  const selectedPrompts = [];
+  for (let i = 0; i < imageCount; i++) {
+    selectedPrompts.push(promptsPool[i % promptsPool.length]);
+  }
 
   console.log(`\n[Flow Visuals] Preparing ${selectedPrompts.length} prompts for category: "${category}"...`);
   const token = getFlowToken();
@@ -373,15 +431,25 @@ export async function produceQuranV2Video({
   }));
 
   console.log(`[Flow Visuals] Submitting batch of ${scenesPayload.length} scenes to Google Flow via MCP...`);
-  const genRes = await fetch(`${FLOW_API_BASE}/generate`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
-    body: JSON.stringify({ project: projectName, scenes: scenesPayload })
-  });
+  let genRes;
+  for (let gAttempt = 1; gAttempt <= 3; gAttempt++) {
+    try {
+      genRes = await fetch(`${FLOW_API_BASE}/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
+        body: JSON.stringify({ project: projectName, scenes: scenesPayload })
+      });
+      if (genRes.ok) break;
+      const err = await genRes.text();
+      console.warn(`[Flow Visuals] Generate attempt ${gAttempt} returned ${genRes.status}: ${err}`);
+    } catch (e) {
+      console.warn(`[Flow Visuals] Generate attempt ${gAttempt} network error: ${e.message}`);
+    }
+    await sleep(3000);
+  }
 
-  if (!genRes.ok) {
-    const err = await genRes.text();
-    throw new Error(`Flow generate failed (${genRes.status}): ${err}`);
+  if (!genRes || !genRes.ok) {
+    throw new Error(`Flow generate failed after 3 attempts`);
   }
 
   const genData = await genRes.json();
@@ -393,20 +461,26 @@ export async function produceQuranV2Video({
   let completedJobs = [];
 
   while (Date.now() - flowStart < 15 * 60 * 1000) {
-    const waitRes = await fetch(`${FLOW_API_BASE}/wait`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
-      body: JSON.stringify({ job_ids: jobIds, timeout_seconds: 30 })
-    });
-    if (waitRes.ok) {
-      const waitData = await waitRes.json();
-      const currentJobs = waitData.jobs || [];
-      const finished = currentJobs.filter(j => j.status === 'done');
-      console.log(`[Flow Visuals] Progress: ${finished.length}/${jobIds.length} scenes finished.`);
-      if (finished.length === jobIds.length) {
-        completedJobs = currentJobs;
-        break;
+    try {
+      const waitRes = await fetch(`${FLOW_API_BASE}/wait`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-flow-token': token },
+        body: JSON.stringify({ job_ids: jobIds, timeout_seconds: 30 })
+      });
+      if (waitRes.ok) {
+        const waitData = await waitRes.json();
+        const currentJobs = waitData.jobs || [];
+        const finished = currentJobs.filter(j => j.status === 'done');
+        console.log(`[Flow Visuals] Progress: ${finished.length}/${jobIds.length} scenes finished.`);
+        if (finished.length === jobIds.length) {
+          completedJobs = currentJobs;
+          break;
+        }
+      } else {
+        console.warn(`[Flow Visuals] Wait returned status ${waitRes.status}, continuing to poll...`);
       }
+    } catch (waitErr) {
+      console.warn(`[Flow Visuals] Polling connection hiccup (${waitErr.message}), retrying in 4s...`);
     }
     await sleep(4000);
   }
