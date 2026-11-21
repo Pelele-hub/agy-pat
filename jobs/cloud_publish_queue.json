@@ -605,7 +605,20 @@
       "status": "pending",
       "createdAt": "2026-11-21T18:00:31.230Z",
       "publishedAt": null
+    },
+    {
+      "id": "quran_v2_1795284956352_tc7w8s",
+      "jobId": "quran_v2_minshawi_1795284034662_output",
+      "title": "Surah Al-Baqarah (2:19-21) | Sheikh Al-Minshawi (المنشاوي)",
+      "caption": "سورة البقرة الآيات (19 - 21)\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\n\nSurah Al-Baqarah (19 - 21) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\n\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2",
+      "videoFilename": "quran_v2_minshawi_1795284034662_output.mp4",
+      "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795284034662_output.mp4",
+      "surah": 2,
+      "engine": "quran_v2_minshawi",
+      "status": "pending",
+      "createdAt": "2026-11-21T18:15:56.353Z",
+      "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-21T18:00:31.231Z"
+  "updatedAt": "2026-11-21T18:15:56.353Z"
 }

@@ -1,17 +1,17 @@
 {
   "currentSurah": 2,
-  "nextAyah": 20,
+  "nextAyah": 22,
   "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
   "reciterId": 9,
-  "lastRunAt": "2026-11-21T18:00:31.232Z",
+  "lastRunAt": "2026-11-21T18:15:56.355Z",
   "lastBatch": {
-    "surahRange": "2:16 -> 2:19",
-    "duration": 64.76,
-    "category": "majestic_mountains_skies",
-    "imageDuration": 9.251428571428573,
+    "surahRange": "2:19 -> 2:21",
+    "duration": 68.71,
+    "category": "cascading_waterfalls_rivers",
+    "imageDuration": 9.815714285714284,
     "imageCount": 7,
-    "outputMp4": "quran_v2_minshawi_1795283146714_output.mp4",
-    "completedAt": "2026-11-21T18:00:31.232Z"
+    "outputMp4": "quran_v2_minshawi_1795284034662_output.mp4",
+    "completedAt": "2026-11-21T18:15:56.355Z"
   },
   "history": [
     {
@@ -53,6 +53,14 @@
       "category": "majestic_mountains_skies",
       "outputFile": "quran_v2_minshawi_1795283146714_output.mp4",
       "timestamp": "2026-11-21T18:00:31.232Z"
+    },
+    {
+      "start": "2:19",
+      "end": "2:21",
+      "duration": "68.71",
+      "category": "cascading_waterfalls_rivers",
+      "outputFile": "quran_v2_minshawi_1795284034662_output.mp4",
+      "timestamp": "2026-11-21T18:15:56.355Z"
     }
   ]
 }
