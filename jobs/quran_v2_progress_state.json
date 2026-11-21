@@ -3,15 +3,15 @@
   "nextAyah": 35,
   "reciter": "Sheikh Muhammad Siddiq Al-Minshawi",
   "reciterId": 9,
-  "lastRunAt": "2026-11-21T20:14:05.208Z",
+  "lastRunAt": "2026-11-21T20:36:35.565Z",
   "lastBatch": {
-    "surahRange": "2:32 -> 2:34",
-    "duration": 73.46,
-    "category": "misty_forests_big_trees",
-    "imageDuration": 9.1825,
-    "imageCount": 8,
-    "outputMp4": "quran_v2_minshawi_1795291127658_output.mp4",
-    "completedAt": "2026-11-21T20:14:05.208Z"
+    "surahRange": "2:16 -> 2:19",
+    "duration": 64.76,
+    "category": "majestic_mountains_skies",
+    "imageDuration": 9.251428571428573,
+    "imageCount": 7,
+    "outputMp4": "quran_v2_minshawi_1795283146714_output.mp4",
+    "completedAt": "2026-11-21T20:36:35.566Z"
   },
   "history": [
     {
@@ -52,7 +52,7 @@
       "duration": "64.76",
       "category": "majestic_mountains_skies",
       "outputFile": "quran_v2_minshawi_1795283146714_output.mp4",
-      "timestamp": "2026-11-21T18:00:31.232Z"
+      "timestamp": "2026-11-21T20:36:35.566Z"
     },
     {
       "start": "2:19",
