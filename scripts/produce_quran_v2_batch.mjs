@@ -286,10 +286,11 @@ export async function produceQuranV2Video({
   const { batchStartMs, batchEndMs, totalDuration, chunks } = await fetchBatchData(surah, startAyah, endAyah, startWord, endWord);
 
   const imageCount = Math.max(5, Math.min(8, Math.round(totalDuration / 9.2)));
-  const sceneDur = totalDuration / imageCount;
+  const transitionDur = 0.300; // 300ms seamless dissolve with zero dip-to-black
+  const sceneDur = (totalDuration + (imageCount - 1) * transitionDur) / imageCount;
 
   console.log(`\n[Planning] Total Duration: ${totalDuration.toFixed(2)}s`);
-  console.log(`[Planning] Scene Count: ${imageCount} scenes (~${sceneDur.toFixed(2)}s per image)`);
+  console.log(`[Planning] Scene Count: ${imageCount} scenes (~${sceneDur.toFixed(2)}s per image, ${transitionDur * 1000}ms xfade)`);
   console.log(`[Planning] Subtitle Phrase Cards: ${chunks.length} cards\n`);
 
   // --- Step 3: Slice Master Audio ---
@@ -485,7 +486,7 @@ export async function produceQuranV2Video({
   console.log(`\n[Composite Engine] Constructing multi-layer filtergraph for ${imageCount} scenes (~${sceneDur.toFixed(2)}s each)...`);
   const phoneFrame = path.join(OVERLAYS_DIR, 'phone_frame_clean.png');
   const outputMp4 = path.join(OUTPUT_DIR, `${jobId}_output.mp4`);
-  const crossfadeDur = 0.35;
+  const crossfadeDur = 0.30;
 
   const liteZoomProfiles = [
     { zoom: "min(1.0+0.00022*on,1.06)", x: "iw/2-(iw/zoom/2)", y: "ih/2-(ih/zoom/2)+0.02*on" },
@@ -513,15 +514,23 @@ export async function produceQuranV2Video({
   const audioIdx = imageCount + 1 + chunks.length;
 
   let f = '';
+  // 1. Zoompan for each scene (Scene 0 starts IMMEDIATELY at full opacity - zero black pitch)
+  const dFrames = Math.ceil(sceneDur * 30);
   for (let i = 0; i < imageCount; i++) {
     const p = liteZoomProfiles[i % liteZoomProfiles.length];
-    const fadeOutStart = (sceneDur - crossfadeDur).toFixed(3);
-    const dFrames = Math.ceil(sceneDur * 30);
-    f += `[${i}:v]scale=4320:7680:flags=lanczos,zoompan=z='${p.zoom}':d=${dFrames}:x='${p.x}':y='${p.y}':s=1080x1920:fps=30,setsar=1,trim=duration=${sceneDur.toFixed(3)},setpts=PTS-STARTPTS,fade=t=in:st=0:d=${crossfadeDur.toFixed(3)},fade=t=out:st=${fadeOutStart}:d=${crossfadeDur.toFixed(3)}[sc${i}];`;
+    f += `[${i}:v]scale=4320:7680:flags=lanczos,zoompan=z='${p.zoom}':d=${dFrames}:x='${p.x}':y='${p.y}':s=1080x1920:fps=30,setsar=1,trim=duration=${sceneDur.toFixed(3)},setpts=PTS-STARTPTS[sc${i}];`;
   }
 
-  const scLabels = Array.from({ length: imageCount }, (_, i) => `[sc${i}]`).join('');
-  f += `${scLabels}concat=n=${imageCount}:v=1:a=0[bg_concat];`;
+  // 2. Cascade xfade transitions (True 300ms soft dissolve with zero black dip)
+  let prevXf = 'sc0';
+  let curOffset = sceneDur - transitionDur;
+  for (let i = 1; i < imageCount; i++) {
+    const outLabel = i === imageCount - 1 ? 'bg_concat' : `xf${i}`;
+    f += `[${prevXf}][sc${i}]xfade=transition=fade:duration=${transitionDur.toFixed(3)}:offset=${curOffset.toFixed(3)}[${outLabel}];`;
+    prevXf = outLabel;
+    curOffset += sceneDur - transitionDur;
+  }
+
   f += `[bg_concat]noise=alls=5:allf=t+u,eq=contrast=1.04:brightness=-0.01:saturation=0.97[bg_graded];`;
   f += `[bg_graded][${maskIdx}:v]overlay=0:0[bg_bezeled];`;
 
@@ -574,6 +583,13 @@ export async function produceQuranV2Video({
   await execFileAsync('ffmpeg', ffmpegArgs, { maxBuffer: 100 * 1024 * 1024 });
   const renderSecs = ((Date.now() - startRender) / 1000).toFixed(1);
   console.log(`[Composite Engine] ✅ Render complete in ${renderSecs}s! File: ${outputMp4}`);
+
+  // High-res Thumbnail extraction (captures at 0.5s with clean visual + frame ready)
+  const thumbPath = path.join(OUTPUT_DIR, `${jobId}_thumbnail.jpg`);
+  try {
+    execSync(`ffmpeg -y -ss 00:00:00.500 -i "${outputMp4}" -frames:v 1 -q:v 2 "${thumbPath}"`, { stdio: 'ignore' });
+    console.log(`[Thumbnail] ✅ Extracted high-res cover frame: ${thumbPath}`);
+  } catch {}
 
   // --- Step 7: Upload to GitHub Releases Vault ---
   console.log(`\n[GitHub Vault] Fetching release metadata for tag: "${RELEASE_TAG}"...`);
