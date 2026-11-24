@@ -681,9 +681,27 @@
       "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795283146714_output.mp4",
       "surah": 2,
       "engine": "quran_v2_minshawi",
-      "status": "pending",
+      "status": "partially_published",
       "createdAt": "2026-11-21T18:00:31.230Z",
-      "publishedAt": null
+      "publishedAt": "2026-11-24T19:16:40.779Z",
+      "dispatchedPosts": [
+        {
+          "channel": "YouTube Shorts",
+          "channelId": "6af071d462b70b94b0bde992",
+          "error": "{\"data\":{\"createPost\":{}}}"
+        },
+        {
+          "channel": "TikTok",
+          "channelId": "6afafea9ece6dfde5fe3e185",
+          "postId": "6b05e2706111797095cfb2a0",
+          "status": "sending"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "error": "[{\"message\":\"The operation was aborted due to timeout\",\"path\":[\"createPost\"],\"extensions\":{\"request\":{\"method\":\"POST\",\"body\":\"{\\\"query\\\":\\\"mutation CreatePost($_createPost_input:CreatePostInput!){createPost(input:$_createPost_input){__typename ...on PostActionSuccess{post{id status dueAt}}...on InvalidInputError{message}...on LimitReachedError{message}...on UnexpectedError{message}}}\\\",\\\"variables\\\":{\\\"_createPost_input\\\":{\\\"assets\\\":[{\\\"video\\\":{\\\"url\\\":\\\"https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795283146714_output.mp4\\\"}}],\\\"channelId\\\":\\\"6af0714462b70b94b0bde62b\\\",\\\"metadata\\\":{\\\"facebook\\\":{\\\"type\\\":\\\"reel\\\"}},\\\"mode\\\":\\\"shareNow\\\",\\\"needsApproval\\\":false,\\\"schedulingType\\\":\\\"automatic\\\",\\\"text\\\":\\\"سورة البقرة الآيات (16 - 19)\\\\nبصوت الشيخ محمد صديق المنشاوي تلاوة خاشعة تريح القلوب.\\\\n\\\\nSurah Al-Baqarah (16 - 19) recited with deep serenity by Sheikh Muhammad Siddiq Al-Minshawi.\\\\n\\\\n#قرآن #المنشاوي #سورة_البقرة #تلاوة_خاشعة #Quran #Islam #Minshawi #SurahBaqarah #Recitation #QuranV2\\\"}},\\\"operationName\\\":\\\"CreatePost\\\"}\"},\"code\":\"SUBREQUEST_HTTP_ERROR\"}}]"
+        }
+      ]
     },
     {
       "id": "quran_v2_1795284956352_tc7w8s",
@@ -790,5 +808,5 @@
       "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-24T04:33:37.467Z"
+  "updatedAt": "2026-11-24T19:16:40.779Z"
 }
