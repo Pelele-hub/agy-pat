@@ -776,9 +776,28 @@
       "cloudVideoUrl": "https://github.com/Pelele-hub/agy-pat/releases/download/stock-videos/quran_v2_minshawi_1795287674552_output.mp4",
       "surah": 2,
       "engine": "quran_v2_minshawi",
-      "status": "pending",
+      "status": "partially_published",
       "createdAt": "2026-11-21T19:19:25.337Z",
-      "publishedAt": null
+      "publishedAt": "2026-11-26T02:36:23.569Z",
+      "dispatchedPosts": [
+        {
+          "channel": "YouTube Shorts",
+          "channelId": "6af071d462b70b94b0bde992",
+          "error": "{\"data\":{\"createPost\":{}}}"
+        },
+        {
+          "channel": "TikTok",
+          "channelId": "6afafea9ece6dfde5fe3e185",
+          "postId": "6b079b12d4eda4b659ce945f",
+          "status": "sending"
+        },
+        {
+          "channel": "Facebook Reels",
+          "channelId": "6af0714462b70b94b0bde62b",
+          "postId": "6b079b1d07071a606749c326",
+          "status": "sending"
+        }
+      ]
     },
     {
       "id": "quran_v2_1795289560046_239pia",
@@ -846,5 +865,5 @@
       "publishedAt": null
     }
   ],
-  "updatedAt": "2026-11-25T18:21:31.074Z"
+  "updatedAt": "2026-11-26T02:36:23.569Z"
 }
